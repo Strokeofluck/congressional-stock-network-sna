@@ -1,0 +1,56 @@
+{
+  "records": 3179,
+  "all_politicians": 55,
+  "all_tickers": 855,
+  "shared_tickers": 355,
+  "display_politicians": 45,
+  "bipartite_ties": 1291,
+  "projection_ties": 494,
+  "components": 1,
+  "largest_component": 45,
+  "top_stocks": [
+    [
+      "AMZN",
+      19
+    ],
+    [
+      "AAPL",
+      15
+    ],
+    [
+      "AVGO",
+      15
+    ],
+    [
+      "MSFT",
+      14
+    ],
+    [
+      "NVDA",
+      14
+    ]
+  ],
+  "degree_leaders": [
+    [
+      "Lisa McClain",
+      210
+    ],
+    [
+      "Gilbert Cisneros",
+      146
+    ],
+    [
+      "Rob Bresnahan",
+      135
+    ],
+    [
+      "Jefferson Shreve",
+      118
+    ],
+    [
+      "Bruce Westerman",
+      75
+    ]
+  ],
+  "projection_density": 0.498989898989899
+}
