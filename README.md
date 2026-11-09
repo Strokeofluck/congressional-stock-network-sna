@@ -57,3 +57,10 @@ The instructions request a 3–4 minute oral presentation covering the topic/que
 `house-ptr-scraper` owns data extraction and cleaning. `congressional-stock-network-2025` owns the original interactive analysis, including historical committee context. This repository owns the SNA presentation and the shared-stock calculations shown here. The portfolio links to these projects.
 
 Prepared with AI assistance. Sean Ryan should review the analysis and rehearse the presentation before submission.
+
+## Scrolling source walkthrough
+
+The page includes an actual captured House PTR, an archived Senate report, a compact P3 source/code inspector with two captured examples, the original interactive network, and the SNA calculations. P3 source examples and their hover explanations are copied from the existing P3 project. The full network loads from its original hosted page. This adds no Senate rows to the House-only network analysis.
+
+After running scripts/build.py, run python scripts/add_showcase.py to include the walkthrough. The publishing workflow runs both steps.
+
