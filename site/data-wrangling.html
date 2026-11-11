@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>From disclosures to comparable data | Sean Ryan · DSA 405</title>
-<link rel="stylesheet" href="assets/p3-integrated.css?v=20261111-readable">
+<link rel="stylesheet" href="assets/p3-integrated.css?v=20261111-minimal-vector">
 <style>
 *{box-sizing:border-box}body{margin:0;color:#222;background:#fff;font:18px/1.5 system-ui,sans-serif}a{color:#2780e3}button{cursor:pointer;border:1px solid #2780e3;background:white;color:#1264bb;padding:8px 14px;border-radius:4px;font:inherit;font-size:14px}header{position:fixed;inset:0 0 auto;z-index:4;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:12px 5vw;background:#f8f9fa;border-bottom:1px solid #dee2e6;font-size:14px}header nav{display:flex;gap:10px;align-items:center}header a{font-weight:600;text-decoration:none}section{padding:90px 6vw 40px;border-bottom:1px solid #dee2e6;min-height:90vh}.eyebrow{font-size:12px;color:#1264bb;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px}h1,h2{letter-spacing:-.035em;font-size:clamp(30px,3.1vw,44px);line-height:1.12;margin:0 0 16px;max-width:1100px}h3{font-size:22px;margin:0 0 10px}.lede{font-size:20px;max-width:1000px;margin:0 0 22px}.identity{font-size:13px;color:#606770;margin-top:24px}.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.source-card{border-top:3px solid #2780e3;background:#f7f9fc;padding:22px}.source-card p{margin:8px 0}.format,.audit{color:#606770;font-size:14px}.count{font-size:38px;letter-spacing:-.03em;line-height:1.2;font-weight:650}.count span{font-size:17px;font-weight:400}.scope{font-size:17px}.scope-note{font-size:15px;color:#606770;margin-top:16px}.verification{padding:15px 18px;background:#edf5ff;border-left:3px solid #2780e3;font-size:16px;margin-top:20px}.verification code{font-size:14px}.verification p{margin:4px 0}.notes{display:none;margin:18px 0;padding:18px;background:#fff8e9;font-size:16px}.show-notes .notes{display:block}.result-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:start}table{border-collapse:collapse;width:100%;font-size:21px}td,th{padding:14px 10px;border-bottom:1px solid #dee2e6;text-align:left}td:last-child,th:last-child{text-align:right}th{font-size:14px;color:#606770}.highlight td{font-weight:700;color:#1264bb;background:#edf5ff}.takeaway{font-size:21px;margin:0 0 20px}.limitation{border-left:3px solid #c76b16;padding-left:18px;font-size:18px}.source-inspector .si-grid{grid-template-columns:1fr 1.15fr}.source-inspector .si-document img{max-height:350px;object-fit:contain;object-position:top;background:#fafafa}.source-inspector .si-detail pre{font-size:14px;padding:14px;margin:10px 0}.source-inspector .si-detail h3{font-size:21px}.source-inspector .si-detail p{font-size:16px}.source-inspector .si-toolbar button,.source-inspector .si-fields button{font-size:14px;padding:6px 10px}
 @media(max-width:850px){.source-grid,.result-grid,.source-inspector .si-grid{grid-template-columns:1fr}header nav>a{display:none}.count{font-size:32px}.source-inspector .si-document img{max-height:none}section{padding:100px 6vw 40px}}
@@ -8,10 +8,328 @@
 .original-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.original-record{margin:0;min-width:0}.record-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px}.record-heading h3{font-size:22px;margin:0}.record-heading span{font-size:13px;color:#606770;white-space:nowrap}.record-count{font-size:15px;line-height:1.6;margin:10px 0 14px}.record-image{display:block;width:100%;padding:0;border:1px solid #dee2e6;border-radius:0;background:#fafbfc;cursor:zoom-in}.record-image img{display:block;width:100%;height:420px;object-fit:cover;object-position:top}.original-record figcaption{font-size:13px;color:#606770;margin-top:8px}.html-example{margin-top:24px;border-top:1px solid #dee2e6;padding-top:16px}.html-example summary{cursor:pointer;color:#1264bb;font-size:16px}.html-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}.html-grid pre{padding:18px;background:#24313c;color:white;font:14px/1.55 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}.compact{margin:0 0 24px;font-size:15px;padding:12px 16px}.network-summary{display:grid;grid-template-columns:1.15fr 1fr;gap:30px;margin-bottom:16px}.network-summary p{font-size:19px;margin:0}.network-summary .network-scope{font-size:14px;color:#606770}.network-live{display:block;width:100%;flex:none;height:clamp(600px,75vh,850px);border:0;background:#fff}.network-footer{display:flex;gap:28px;align-items:start;justify-content:space-between;margin-top:18px}.network-footer .limitation{font-size:16px;margin:0;max-width:850px}.network-footer>a{white-space:nowrap;font-size:14px}.record-zoom{position:fixed;inset:12px;width:calc(100% - 24px);height:calc(100dvh - 24px);max-width:none;max-height:none;border:1px solid #dee2e6;background:#fff;padding:20px;z-index:100}.record-zoom::backdrop{background:#14233799}.record-zoom-toolbar{display:flex;justify-content:space-between;gap:20px;align-items:center;position:sticky;top:-20px;background:white;padding:10px 0}.record-zoom img{display:block;width:100%;height:auto;max-width:1400px;margin:auto}
 @media(max-width:850px){.original-grid,.html-grid,.network-summary{grid-template-columns:1fr}.record-image img{height:auto;max-height:550px}.record-heading{display:block}.network-footer{display:block}.network-live{height:650px}}
 @media print{.network-live{display:none}.record-image img{height:300px}.html-example{display:none}}
+</style><style>
+.senate-native-preview{height:420px;overflow:auto;border:1px solid #dee2e6;background:white}
+.senate-live-report{color:#202b36;background:white;padding:24px;font:14px/1.5 Arial,sans-serif;text-align:left}
+.senate-live-report h1{font:700 24px/1.2 Arial,sans-serif;letter-spacing:-.02em;margin:18px 0 8px}.senate-live-report h2{font:600 18px/1.35 Arial,sans-serif;letter-spacing:0;margin:0 0 8px}.senate-live-report h3{font-size:18px;margin:24px 0 12px}.senate-live-report h3 small{font-size:13px;font-weight:400}.senate-agency{font-size:12px;letter-spacing:.07em;border-bottom:2px solid #24313c;padding-bottom:12px}.senate-filed{font-size:13px;color:#5c6570}
+.senate-live-report table{font:12px/1.5 Arial,sans-serif;table-layout:auto;width:100%;border-collapse:collapse}.senate-live-report caption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.senate-live-report th,.senate-live-report td{font-size:inherit;padding:9px 6px;text-align:left;vertical-align:top;border:1px solid #dce1e6;overflow-wrap:anywhere}.senate-live-report th{font-weight:700;color:#263444;background:#f0f3f6}.senate-live-report table th:nth-child(5){min-width:110px}.senate-live-report td:last-child{text-align:left}.senate-enlarge{margin-top:10px;font-size:13px}.senate-zoom-content .senate-live-report{max-width:1500px;margin:auto;font-size:18px}.senate-zoom-content .senate-live-report table{font-size:16px}
+.network-views{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px;flex:none}.network-views button[aria-pressed=true]{background:#2780e3;color:white}
+.p3-ptr-only{position:relative}.p3-ptr-only .views,.p3-ptr-only .section-heading,.p3-ptr-only .source-toolbar,.p3-ptr-only .filing-status,.p3-ptr-only .document-status,.p3-ptr-only .guide,.p3-ptr-only .caption{display:none!important}
+.p3-ptr-only .workspace{display:block!important;max-width:1100px;margin:0 auto;border:0}.p3-ptr-only .pdf-sheet{max-width:1100px;aspect-ratio:1.35;overflow:hidden}.p3-ptr-only .document{padding:0;overflow:visible}.p3-ptr-only .source-pane{height:auto!important}.p3-ptr-only .ptr-compact-detail{position:absolute;right:10px;top:12px;z-index:8;width:min(390px,42%);padding:18px;background:#fff;border:1px solid #b6cef0;box-shadow:0 5px 24px #182d4920;border-radius:6px}.p3-ptr-only .ptr-compact-detail[hidden]{display:none}.ptr-compact-detail h3{font-size:21px;margin:0 20px 12px 0}.ptr-compact-detail p{font-size:15px}.ptr-compact-detail pre{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5fa;padding:12px}.ptr-detail-close{float:right;border:0;padding:2px 6px}
+#wrangle-challenge>.identity{max-width:1100px;width:100%;margin:14px auto 0}
+@media(max-width:850px){.senate-native-preview{height:500px}.p3-ptr-only .pdf-sheet{aspect-ratio:1.05}.p3-ptr-only .ptr-compact-detail{position:relative;width:100%;right:auto;top:auto;margin-bottom:16px}.network-views button{font-size:12px}}
 </style></head><body><header><a href="./">Sean Ryan · Data Wrangling</a><nav><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Question & sources · 45 seconds</p><h1>How can public disclosures reveal shared stock purchases?</h1><p class="lede">I chose this project to make congressional financial records traceable, searchable, and usable for reporting.</p>
 <div class="original-grid">
-<figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="demos/p3/source/20016861.webp" data-title="House Clerk · John McGuire · Filing 20016861" aria-label="Enlarge actual House PTR"><img src="demos/p3/source/20016861.webp" alt="Actual House PTR filed by Hon. John McGuire on May 16, 2025"></button><figcaption>John McGuire · filed May 16, 2025 · <a href="demos/data/raw/2025_pdfs/20016861.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
-<figure class="original-record"><div class="record-heading"><h3>Senate report · original website</h3><span>U.S. Senate eFD</span></div><p class="record-count">583 scraped and archived HTML reports → 5,069 parsed rows<br><strong>518 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/senate-original-chrome.jpg" data-title="Senate eFD · David McCormick · Filed December 26, 2025" aria-label="Enlarge actual Senate report"><img src="assets/senate-original-chrome.jpg" alt="Actual screenshot of David McCormick's December 26, 2025 report on the Senate eFD website"></button><figcaption>David McCormick · filed December 26, 2025 · <a href="demos/data/raw/senate/html/e337e1b4-ff0a-4b83-8a58-1d25a81ea26f.html" target="_blank" rel="noopener">Open captured HTML ↗</a></figcaption></figure></div>
+<figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/house-ptr-20016861.svg" data-title="House Clerk · John McGuire · Filing 20016861" aria-label="Enlarge actual House PTR"><img src="assets/house-ptr-20016861.svg" alt="Actual House PTR filed by Hon. John McGuire on May 16, 2025"></button><figcaption>John McGuire · filed May 16, 2025 · <a href="demos/data/raw/2025_pdfs/20016861.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
+<figure class="original-record"><div class="record-heading"><h3>Senate report · saved HTML</h3><span>U.S. Senate eFD</span></div><p class="record-count">583 scraped and archived HTML reports → 5,069 parsed rows<br><strong>518 eligible 2025 stock/fund rows</strong></p><div class="senate-native-preview"><div class="senate-live-report" aria-label="Archived Senate disclosure rendered as text"><div class="senate-agency">UNITED STATES SENATE · FINANCIAL DISCLOSURES</div><h1>
+                Periodic Transaction Report
+                
+                    for 12/26/2025
+                
+            </h1><h2>
+                Mr. David
+                H McCormick
+                
+                (McCormick, David H.)
+            </h2><p class="senate-filed">Filed 12/26/2025 @ 12:36 PM</p><h3>Transactions <small>(10 transactions total)</small></h3><table>
+                    <caption>List of transactions added to this report</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">&#35;</th>
+                            <th scope="col">Transaction Date</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Ticker</th>
+                            <th scope="col">Asset Name</th>
+                            <th scope="col">Asset Type</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            
+                                <tr>
+                                    <td>10</td>
+                                    <td>
+                                        12/17/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            DELAWARE CNTY PA GO BDS 
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 08/01/2045</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$250,001 - $500,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        12/10/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            PENNSYLVANIA ST TPK COMMN TPK REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 12/01/2046</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$250,001 - $500,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        11/28/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            <a href="https://finance.yahoo.com/quote/BITB"
+                                               target="_blank" rel="noopener">BITB</a>
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            Bitwise Bitcoin ETF
+                                        
+                                        
+                                        
+                                    </td>
+                                    <td>Stock</td>
+                                    <td>Purchase</td>
+
+                                    <td>$50,001 - $100,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        11/26/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            <a href="https://finance.yahoo.com/quote/BITB"
+                                               target="_blank" rel="noopener">BITB</a>
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            Bitwise Bitcoin ETF
+                                        
+                                        
+                                        
+                                    </td>
+                                    <td>Stock</td>
+                                    <td>Purchase</td>
+
+                                    <td>$50,001 - $100,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        12/17/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            OHIO ST UNIV GEN RCPTS REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 06/01/2035</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        12/15/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            PENNSYLVANIA ST GO
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 08/15/2034</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        12/09/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            ENERGY NORTHWEST WASH ELEC REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 07/01/2034</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        12/08/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            SENECA VY PA SCH DIST GO
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 03/01/2026</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Sale (Full)</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        12/08/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            PHILADELPHIA PA GO
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 02/01/2026</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Sale (Full)</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        12/05/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            UNIV PITTSBURGH OF THE COMWLTH REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 04/15/2032</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                        
+                    </tbody>
+                </table></div></div><button type="button" class="senate-enlarge">Enlarge full Senate report ↗</button><figcaption>David McCormick · filed December 26, 2025 · <a href="demos/data/raw/senate/html/e337e1b4-ff0a-4b83-8a58-1d25a81ea26f.html" target="_blank" rel="noopener">Open captured HTML ↗</a></figcaption></figure></div>
 <details class="html-example"><summary>See the actual Senate HTML and how it is scraped</summary><div class="html-grid"><div><h3>Captured HTML · BITB row</h3><pre><code>&lt;tr&gt;
 &lt;td&gt;8&lt;/td&gt;
 &lt;td&gt;11/28/2025&lt;/td&gt;
@@ -28,9 +346,8 @@ for tr in table.select('tbody tr'):
     values = [re.sub(r'\s+', ' ', c.get_text(' ', strip=True)).strip()
               for c in cells]
     item,date,owner,ticker,asset,asset_type,kind,amount,comment = values</code></pre><p class="audit">Selected code from <a href="https://github.com/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3/blob/main/scripts/senate.py" target="_blank" rel="noopener">scripts/senate.py ↗</a>. P3 reparses the saved reports locally.</p></div></div></details>
-<p class="identity">Sean Ryan · <strong>sryan3</strong> · DSA 405 (002) · <a href="https://github.com/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3" target="_blank" rel="noopener">P3 repository ↗</a></p><div class="notes">45 seconds. These are actual captured sources. Click either record to enlarge it. The House supplied PDFs; the Senate supplied HTML tables. I preserved the original files, parsed each format, and mapped their fields into a shared schema. P3 uses 6,394 eligible House rows and 518 Senate rows for its 2025 ticker-month comparison. The network on the last slide uses a separate frozen House-only purchase extract. The expandable HTML example shows a real Senate transaction row and the extraction code.</div></section><section id="wrangle-challenge"><p class="eyebrow">02 / Challenge & verified fix · 60 seconds</p><h2>Different source formats need different parsers</h2><p class="lede">P3 turns source fields into common columns, then checks that the join preserves the records.</p>
-<div class="verification compact"><strong>Verification:</strong> exact headers and valid dates are required. After the join, count checks preserve <strong>6,394 House rows + 518 Senate rows</strong>; <strong>9 assertions pass</strong>.<br><code>assert int(joined.house_reports.sum()) == len(house_transactions)</code></div>
-<div class="p3-integrated">
+<p class="identity">Sean Ryan · <strong>sryan3</strong> · DSA 405 (002) · <a href="https://github.com/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3" target="_blank" rel="noopener">P3 repository ↗</a></p><div class="notes">45 seconds. These are actual captured sources. Click either record to enlarge it. The House supplied PDFs; the Senate supplied HTML tables. I preserved the original files, parsed each format, and mapped their fields into a shared schema. P3 uses 6,394 eligible House rows and 518 Senate rows for its 2025 ticker-month comparison. The network on the last slide uses a separate frozen House-only purchase extract. The expandable HTML example shows a real Senate transaction row and the extraction code.</div></section><section id="wrangle-challenge"><p class="eyebrow">02 / Extraction walkthrough</p><h2>From a highlighted field to a structured record</h2>
+<div class="p3-integrated p3-ptr-only">
 
 <div class="p3-main" id="main">
   
@@ -67,10 +384,10 @@ for tr in table.select('tbody tr'):
 </div>
 <p class="identity">Sean Ryan · <strong>sryan3</strong> · DSA 405 (002) · <a href="https://github.com/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3" target="_blank" rel="noopener">P3 repository ↗</a></p><div class="notes">60 seconds. The hard part is translating PDF positions and HTML cells into the same columns without losing the meaning of the record. Use Inspect the sources to select a field and follow the actual code. Under Verify the join, each source is summarized to one ticker-month row, then a validated one-to-one outer join keeps unmatched keys. Count-conservation checks preserve all 6,394 eligible House records and 518 Senate records. The nine assertions check uniqueness, scope, retained keys and counts. Explore the result makes the individual records searchable. These are the actual P3 tools, directly incorporated into the slide.</div></section><section id="wrangle-finding"><p class="eyebrow">03 / Result & limitation · 60 seconds</p><h2>Structured records become an interactive network</h2>
 <div class="network-summary"><p><strong>AMZN connects 19 House filers</strong>, the most in this frozen purchase extract. The connections show shared reported stock choices, without establishing coordination.</p><p class="network-scope"><strong>House-only network:</strong> 3,179 accepted purchase records → 45 displayed filers · 355 shared tickers · 1,291 filer–ticker ties. Senate records are outside this graph.</p></div>
-<iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/#view=stock&amp;layout=party" title="Interactive congressional stock-purchase network" loading="lazy"></iframe>
+<nav class="network-views" aria-label="Network layers"><button type="button" data-network-view="full" aria-pressed="true">Stocks + all committees + subcommittees</button><button type="button" data-network-view="committee" aria-pressed="false">Stocks + committees</button><button type="button" data-network-view="stock" aria-pressed="false">Member–stock</button><button type="button" data-network-view="members" aria-pressed="false">Member–member</button></nav><iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/#view=full&amp;layout=party" title="Interactive congressional stock-purchase network" loading="lazy"></iframe>
 <div class="network-footer"><p class="limitation"><strong>Limitation:</strong> incomplete extraction and the purchase-only, accepted-ticker scope leave out records; this is not a complete picture of congressional trading.</p><a href="https://strokeofluck.github.io/congressional-stock-network-2025/" target="_blank" rel="noopener">Open full network ↗</a></div>
 <p class="identity">Sean Ryan · <strong>sryan3</strong> · DSA 405 (002) · <a href="https://github.com/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3" target="_blank" rel="noopener">P3 repository ↗</a></p><div class="notes">60 seconds. The finished structured records support a network. Each line links a House filer to a stock reported as purchased. The shared-stock analysis retains tickers with at least two filers and counts repeated purchases once per filer-ticker connection. AMZN connects 19 filers, the highest stock degree in this extract. The interactive project also has committee views; those committee links are outside the simple shared-stock metrics quoted here. This is a separate frozen House-only purchase extract, not the P3 House-Senate joined table. Incomplete extraction and excluded transaction types limit the findings, and overlap alone is not evidence of coordination.</div></section></main>
-<script src="demos/p3/data/project.js" defer></script><script src="assets/p3-integrated.js?v=20261111-readable" defer></script><script>(() => {
+<script src="demos/p3/data/project.js" defer></script><script src="assets/p3-integrated.js?v=20261111-minimal-vector" defer></script><script>(() => {
 const slides = [...document.querySelectorAll('body > main > section')];
 const present = document.querySelector('#present'), notes = document.querySelector('#speaker-notes');
 const style = document.createElement('style');
@@ -126,4 +443,342 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 const initial=targetIndex(document.getElementById(location.hash.slice(1)));if(initial>=0)current=initial;
 setDeck(true);
-})();</script><dialog id="record-zoom" class="record-zoom"><div class="record-zoom-toolbar"><strong id="record-zoom-title"></strong><button type="button" id="record-zoom-close">Close ×</button></div><img id="record-zoom-image" alt=""></dialog><script>(()=>{const dialog=document.getElementById('record-zoom');document.querySelectorAll('[data-zoom]').forEach(button=>button.addEventListener('click',()=>{document.getElementById('record-zoom-title').textContent=button.dataset.title;const image=document.getElementById('record-zoom-image');image.src=button.dataset.zoom;image.alt=button.dataset.title;dialog.showModal();}));document.getElementById('record-zoom-close').onclick=()=>dialog.close();})();</script></body></html>
+})();</script><dialog id="record-zoom" class="record-zoom"><div class="record-zoom-toolbar"><strong id="record-zoom-title"></strong><button type="button" id="record-zoom-close">Close ×</button></div><img id="record-zoom-image" alt=""></dialog><script>(()=>{const dialog=document.getElementById('record-zoom');document.querySelectorAll('[data-zoom]').forEach(button=>button.addEventListener('click',()=>{document.getElementById('record-zoom-title').textContent=button.dataset.title;const image=document.getElementById('record-zoom-image');image.src=button.dataset.zoom;image.alt=button.dataset.title;dialog.showModal();}));document.getElementById('record-zoom-close').onclick=()=>dialog.close();})();</script><dialog class="record-zoom" id="senate-report-zoom"><div class="record-zoom-toolbar"><strong>Original archived Senate HTML · selectable text</strong><button type="button" id="senate-zoom-close">Close ×</button></div><div class="senate-zoom-content"><div class="senate-live-report" aria-label="Archived Senate disclosure rendered as text"><div class="senate-agency">UNITED STATES SENATE · FINANCIAL DISCLOSURES</div><h1>
+                Periodic Transaction Report
+                
+                    for 12/26/2025
+                
+            </h1><h2>
+                Mr. David
+                H McCormick
+                
+                (McCormick, David H.)
+            </h2><p class="senate-filed">Filed 12/26/2025 @ 12:36 PM</p><h3>Transactions <small>(10 transactions total)</small></h3><table>
+                    <caption>List of transactions added to this report</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">&#35;</th>
+                            <th scope="col">Transaction Date</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Ticker</th>
+                            <th scope="col">Asset Name</th>
+                            <th scope="col">Asset Type</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            
+                                <tr>
+                                    <td>10</td>
+                                    <td>
+                                        12/17/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            DELAWARE CNTY PA GO BDS 
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 08/01/2045</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$250,001 - $500,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        12/10/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            PENNSYLVANIA ST TPK COMMN TPK REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 12/01/2046</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$250,001 - $500,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        11/28/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            <a href="https://finance.yahoo.com/quote/BITB"
+                                               target="_blank" rel="noopener">BITB</a>
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            Bitwise Bitcoin ETF
+                                        
+                                        
+                                        
+                                    </td>
+                                    <td>Stock</td>
+                                    <td>Purchase</td>
+
+                                    <td>$50,001 - $100,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        11/26/2025
+                                    </td>
+                                    <td>Self</td>
+                                    <td>
+                                        
+                                            <a href="https://finance.yahoo.com/quote/BITB"
+                                               target="_blank" rel="noopener">BITB</a>
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            Bitwise Bitcoin ETF
+                                        
+                                        
+                                        
+                                    </td>
+                                    <td>Stock</td>
+                                    <td>Purchase</td>
+
+                                    <td>$50,001 - $100,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        12/17/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            OHIO ST UNIV GEN RCPTS REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 06/01/2035</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        12/15/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            PENNSYLVANIA ST GO
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 08/15/2034</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        12/09/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            ENERGY NORTHWEST WASH ELEC REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 07/01/2034</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        12/08/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            SENECA VY PA SCH DIST GO
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 03/01/2026</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Sale (Full)</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        12/08/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            PHILADELPHIA PA GO
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 02/01/2026</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Sale (Full)</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        12/05/2025
+                                    </td>
+                                    <td>Spouse</td>
+                                    <td>
+                                        
+                                            --
+                                        
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                            UNIV PITTSBURGH OF THE COMWLTH REV
+                                        
+                                        
+                                        
+                                            <div><em>Rate/Coupon:</em> 5%<br> <em>Matures:</em> 04/15/2032</div>
+                                        
+                                    </td>
+                                    <td>Municipal Security</td>
+                                    <td>Purchase</td>
+
+                                    <td>$100,001 - $250,000</td>
+                                    <td>--</td>
+                                </tr>
+                            
+                        
+                    </tbody>
+                </table></div></div></dialog><script>
+(() => {
+const senateZoom=document.getElementById('senate-report-zoom');
+document.querySelector('.senate-enlarge').onclick=()=>senateZoom.showModal();
+document.getElementById('senate-zoom-close').onclick=()=>senateZoom.close();
+const frame=document.querySelector('.network-live');
+document.querySelectorAll('[data-network-view]').forEach(button=>button.onclick=()=>{
+ document.querySelectorAll('[data-network-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ frame.src='https://strokeofluck.github.io/congressional-stock-network-2025/#view='+button.dataset.networkView+'&layout=party';
+});
+const root=document.querySelector('.p3-ptr-only');
+root.addEventListener('click',event=>{
+ const button=event.target.closest('.hotspot');
+ if(!button)return;
+ event.preventDefault();event.stopImmediatePropagation();
+ const P=window.P3,key=button.dataset.field,e=P.explanations['House:'+key];
+ if(!e)return;
+ root.querySelectorAll('.active-source').forEach(n=>n.classList.remove('active-source'));button.classList.add('active-source');
+ const tip=root.querySelector('#field-tooltip');if(tip)tip.hidden=true;
+ let panel=root.querySelector('.ptr-compact-detail');
+ if(!panel){panel=document.createElement('aside');panel.className='ptr-compact-detail';panel.setAttribute('aria-live','polite');root.prepend(panel);}
+ panel.replaceChildren();
+ const close=document.createElement('button');close.type='button';close.className='ptr-detail-close';close.textContent='×';close.setAttribute('aria-label','Close field explanation');close.onclick=()=>panel.hidden=true;
+ const title=document.createElement('h3');title.textContent=e.title;
+ const why=document.createElement('p');why.textContent=e.why;
+ const step=e.steps?.[0],code=document.createElement('pre');
+ code.textContent=step?(step.focus||[step.line]).slice(0,3).map(line=>(P.code_files?.[step.file]||[])[line-1]||'').join('\n'):'';
+ panel.append(close,title,why);if(code.textContent)panel.append(code);panel.hidden=false;
+},true);
+})();
+</script></body></html>
