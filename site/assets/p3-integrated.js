@@ -210,6 +210,7 @@ window.addEventListener('scroll',hideCodeTooltip,{passive:true});
 window.addEventListener('resize',hideCodeTooltip);
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&$('explanation').open)$('explanation').close();});
 $('explanation').addEventListener('close',()=>{
+ root.classList.remove('code-docked');
   if($('explanation').dataset.promoting==='true'){delete $('explanation').dataset.promoting;return;}
   hideCodeTooltip();
   root.querySelector('.workspace').classList.remove('inspecting');
@@ -411,8 +412,13 @@ root.addEventListener('ptr-open-code',event=>{
  const source=P.sources.find(s=>s.chamber==='House');
  const field=source.fields.find(f=>f.key===key&&String(f.row||'')===String(button.dataset.row||''))||source.fields.find(f=>f.key===key);
  openExplanation('House:'+key,field?.before||'',field?.after||'',button);
- const panel=$('explanation');root.append(panel);panel.dataset.placement='page';
- root.querySelector('.workspace').classList.remove('inspecting');
- panel.dataset.promoting='true';panel.close();panel.showModal();panel.focus({preventScroll:true});renderJourney(0);
+ const panel=$('explanation');root.append(panel);panel.dataset.placement='right';
+ root.querySelector('.workspace').classList.remove('inspecting');root.classList.add('code-docked');
+ if(!panel.querySelector('.code-colab-link')){
+  const link=document.createElement('a');link.className='code-colab-link';link.textContent='Open P3 notebook in Colab ↗';
+  link.href='https://colab.research.google.com/github/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3/blob/main/notebooks/DSA405_002_FA26_P3_sryan3.ipynb';
+  link.target='_blank';link.rel='noopener';$('popup-title').after(link);
+ }
+ panel.focus({preventScroll:true});renderJourney(0);
 });
 })();

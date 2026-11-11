@@ -46,10 +46,35 @@ body.slide-deck #wrangle-finding.active-slide{overflow:hidden}
 #wrangle-finding .network-footer .limitation{font-size:12px;line-height:1.35}
 #wrangle-finding>.identity{font-size:11px;margin:8px 0 0;flex:none}
 body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
-</style><style>.p3-ptr-only .walkthrough[open][data-placement="page"]{max-width:none!important}.p3-ptr-only .walkthrough::backdrop{background:#17283877!important}.native-network-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:#606770;margin:0 0 6px;flex:none}.native-network-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.native-network-legend .square{border-radius:1px}</style></head><body><header><a href="./">Sean Ryan · Data Wrangling</a><nav><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Question & sources · 45 seconds</p><h1>How can public disclosures reveal shared stock purchases?</h1><p class="lede">I chose this project to make congressional financial records traceable, searchable, and usable for reporting.</p>
+</style><style>.p3-ptr-only .walkthrough[open][data-placement="page"]{max-width:none!important}.p3-ptr-only .walkthrough::backdrop{background:#17283877!important}.native-network-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:#606770;margin:0 0 6px;flex:none}.native-network-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}.native-network-legend .square{border-radius:1px}</style><style>
+.original-grid{--record-preview-height:420px;align-items:start}
+.original-grid>.original-record{display:grid;grid-template-rows:54px 68px var(--record-preview-height) auto auto auto;align-content:start}
+.original-grid .record-heading{grid-row:1;align-items:start}
+.original-grid .record-count{grid-row:2;margin:0;padding-top:4px}
+.original-grid .record-image,.original-grid .senate-native-preview{grid-row:3;height:var(--record-preview-height);margin:0;overflow:hidden!important}
+.original-grid .record-image img{height:100%}
+.original-grid .senate-fit-tools{grid-row:4;margin:10px 0;min-height:32px}
+.original-grid .senate-enlarge{grid-row:5;justify-self:start}
+.original-grid>.original-record:first-child>figcaption{grid-row:4;margin-top:10px}
+.original-grid>.original-record:last-child>figcaption{grid-row:6}
+.p3-ptr-only.code-docked{display:grid;grid-template-columns:minmax(0,1fr) minmax(460px,1.15fr);gap:24px;align-items:start}
+.p3-ptr-only.code-docked>.p3-main{min-width:0}
+.p3-ptr-only.code-docked .workspace{max-width:100%}
+.p3-ptr-only.code-docked .document{height:420px!important}
+.p3-ptr-only .walkthrough[open][data-placement="right"]{position:relative!important;inset:auto!important;width:100%!important;max-width:none!important;height:clamp(480px,calc(100dvh - 250px),800px)!important;max-height:none!important;margin:0!important;padding:16px!important;z-index:8;box-shadow:none!important;display:flex;flex-direction:column;border:1px solid #dee2e6;border-radius:5px}
+.p3-ptr-only .walkthrough[data-placement="right"] .value-pair,.p3-ptr-only .walkthrough[data-placement="right"] .concept-hint,.p3-ptr-only .walkthrough[data-placement="right"] #journey-why{display:none}
+.p3-ptr-only .walkthrough[data-placement="right"] h2{font-size:22px}
+.p3-ptr-only .walkthrough[data-placement="right"] #popup-why{font-size:13px}
+.p3-ptr-only .walkthrough[data-placement="right"] .code-view{flex:1;min-height:0;display:flex;flex-direction:column}
+.p3-ptr-only .walkthrough[data-placement="right"] #popup-code{flex:1;min-height:160px;font-size:13px}
+.p3-ptr-only .walkthrough[data-placement="right"] .journey-description{padding:6px 0}
+.p3-ptr-only .walkthrough[data-placement="right"] .journey-description h3{font-size:16px}
+.code-colab-link{font-size:12px;margin-top:5px;display:inline-block}
+@media(max-width:850px){.p3-ptr-only.code-docked{grid-template-columns:1fr}.original-grid>.original-record{grid-template-rows:54px 68px var(--record-preview-height) auto auto auto}}
+</style></head><body><header><a href="./">Sean Ryan · Data Wrangling</a><nav><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Question & sources · 45 seconds</p><h1>How can public disclosures reveal shared stock purchases?</h1><p class="lede">I chose this project to make congressional financial records traceable, searchable, and usable for reporting.</p>
 <div class="original-grid">
 <figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/house-ptr-20016861.svg" data-title="House Clerk · John McGuire · Filing 20016861" aria-label="Enlarge actual House PTR"><img src="assets/house-ptr-20016861.svg" alt="Actual House PTR filed by Hon. John McGuire on May 16, 2025"></button><figcaption>John McGuire · filed May 16, 2025 · <a href="demos/data/raw/2025_pdfs/20016861.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
-<figure class="original-record"><div class="record-heading"><h3>Senate report · archived HTML (restyled)</h3><span>U.S. Senate eFD</span></div><p class="record-count">583 scraped and archived HTML reports → 5,069 parsed rows<br><strong>518 eligible 2025 stock/fund rows</strong></p><div class="senate-fit-tools" role="group" aria-label="Senate report zoom"><button type="button" data-senate-zoom="fit">Fit width</button><button type="button" data-senate-zoom="out" aria-label="Zoom Senate report out">−</button><span id="senate-scale-label"></span><button type="button" data-senate-zoom="in" aria-label="Zoom Senate report in">+</button><a href="https://efdsearch.senate.gov/search/view/ptr/e337e1b4-ff0a-4b83-8a58-1d25a81ea26f/" target="_blank" rel="noopener">Official Senate page ↗</a></div><div class="senate-native-preview"><div class="senate-live-report" aria-label="Archived Senate disclosure rendered as text"><div class="senate-agency">UNITED STATES SENATE · FINANCIAL DISCLOSURES</div><h1>
+<figure class="original-record"><div class="record-heading"><h3>Senate report · archived HTML (restyled)</h3><span>U.S. Senate eFD</span></div><p class="record-count">583 scraped and archived HTML reports → 5,069 parsed rows<br><strong>518 eligible 2025 stock/fund rows</strong></p><div class="senate-native-preview"><div class="senate-live-report" aria-label="Archived Senate disclosure rendered as text"><div class="senate-agency">UNITED STATES SENATE · FINANCIAL DISCLOSURES</div><h1>
                 Periodic Transaction Report
                 
                     for 12/26/2025
@@ -357,7 +382,7 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
                             
                         
                     </tbody>
-                </table></div></div><button type="button" class="senate-enlarge">Enlarge full Senate report ↗</button><figcaption>David McCormick · filed December 26, 2025 · <a href="demos/data/raw/senate/html/e337e1b4-ff0a-4b83-8a58-1d25a81ea26f.html" target="_blank" rel="noopener">Open captured HTML ↗</a></figcaption></figure></div>
+                </table></div></div><div class="senate-fit-tools" role="group" aria-label="Senate report zoom"><button type="button" data-senate-zoom="fit">Fit report</button><button type="button" data-senate-zoom="out" aria-label="Zoom Senate report out">−</button><span id="senate-scale-label"></span><button type="button" data-senate-zoom="in" aria-label="Zoom Senate report in">+</button><a href="https://efdsearch.senate.gov/search/view/ptr/e337e1b4-ff0a-4b83-8a58-1d25a81ea26f/" target="_blank" rel="noopener">Official Senate page ↗</a></div><button type="button" class="senate-enlarge">Enlarge full Senate report ↗</button><figcaption>David McCormick · filed December 26, 2025 · <a href="demos/data/raw/senate/html/e337e1b4-ff0a-4b83-8a58-1d25a81ea26f.html" target="_blank" rel="noopener">Open captured HTML ↗</a></figcaption></figure></div>
 <details class="html-example"><summary>See the actual Senate HTML and how it is scraped</summary><div class="html-grid"><div><h3>Captured HTML · BITB row</h3><pre><code>&lt;tr&gt;
 &lt;td&gt;8&lt;/td&gt;
 &lt;td&gt;11/28/2025&lt;/td&gt;
@@ -415,7 +440,7 @@ for tr in table.select('tbody tr'):
 <nav class="network-views" aria-label="Network layers"><button type="button" data-network-view="full" aria-pressed="true">Stocks + all committees + subcommittees</button><button type="button" data-network-view="committee" aria-pressed="false">Stocks + committees</button><button type="button" data-network-view="stock" aria-pressed="false">Member–stock</button><button type="button" data-network-view="members" aria-pressed="false">Member–member</button><span class="network-zoom-tools"><button type="button" data-network-action="zoomOutNetworkBtn" aria-label="Zoom network out">−</button><button type="button" data-network-action="recenterNetworkBtn">Fit network</button><button type="button" data-network-action="zoomInNetworkBtn" aria-label="Zoom network in">+</button></span></nav><div class="native-network-legend"><span><i style="background:#2f6fdb"></i>Democrat</span><span><i style="background:#d64b4b"></i>Republican</span><span><i style="background:#d9a928"></i>Stock</span><span><i class="square" style="background:#667a70"></i>Committee</span><span><i class="square" style="background:#a8b7ae"></i>Subcommittee</span></div><iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/?embed=1#view=full&amp;layout=party" title="Interactive congressional stock-purchase network" loading="lazy"></iframe>
 <div class="network-footer"><p class="limitation"><strong>Limitation:</strong> incomplete extraction and the purchase-only, accepted-ticker scope leave out records; this is not a complete picture of congressional trading.</p><a href="https://strokeofluck.github.io/congressional-stock-network-2025/" target="_blank" rel="noopener">Open full network ↗</a></div>
 <p class="identity">Sean Ryan · <strong>sryan3</strong> · DSA 405 (002) · <a href="https://github.com/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3" target="_blank" rel="noopener">P3 repository ↗</a></p><div class="notes">60 seconds. The finished structured records support a network. Each line links a House filer to a stock reported as purchased. The shared-stock analysis retains tickers with at least two filers and counts repeated purchases once per filer-ticker connection. AMZN connects 19 filers, the highest stock degree in this extract. The interactive project also has committee views; those committee links are outside the simple shared-stock metrics quoted here. This is a separate frozen House-only purchase extract, not the P3 House-Senate joined table. Incomplete extraction and excluded transaction types limit the findings, and overlap alone is not evidence of coordination.</div></section></main>
-<script src="demos/p3/data/project.js" defer></script><script src="assets/p3-integrated.js?v=20261111-full-code-modal" defer></script><script>(() => {
+<script src="demos/p3/data/project.js" defer></script><script src="assets/p3-integrated.js?v=20261111-right-pane" defer></script><script>(() => {
 const slides = [...document.querySelectorAll('body > main > section')];
 const present = document.querySelector('#present'), notes = document.querySelector('#speaker-notes');
 const style = document.createElement('style');
@@ -788,6 +813,7 @@ const frame=document.querySelector('.network-live');
 document.querySelectorAll('[data-network-view]').forEach(button=>button.onclick=()=>{
  document.querySelectorAll('[data-network-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
  frame.src='https://strokeofluck.github.io/congressional-stock-network-2025/?embed=1#view='+button.dataset.networkView+'&layout=party';
+ frame.dispatchEvent(new Event('network-view-changed'));
 });
 const root=document.querySelector('.p3-ptr-only');
 root.addEventListener('click',event=>{
@@ -801,8 +827,8 @@ root.addEventListener('click',event=>{
 (() => {
 const preview=document.querySelector('.senate-native-preview'),report=preview.querySelector('.senate-live-report'),label=document.getElementById('senate-scale-label');
 let factor=1;
-function fitSenate(){const fit=Math.min(1,preview.clientWidth/1000),scale=fit*factor;report.style.zoom=scale;label.textContent=Math.round(scale*100)+'%';}
-document.querySelectorAll('[data-senate-zoom]').forEach(button=>button.onclick=()=>{factor=button.dataset.senateZoom==='fit'?1:Math.max(.35,Math.min(2,factor*(button.dataset.senateZoom==='out'?.85:1.15)));fitSenate();});
+function fitSenate(){report.style.zoom=1;const fit=Math.min(1,preview.clientWidth/1000,preview.clientHeight/report.scrollHeight),scale=fit*Math.min(1,factor);report.style.zoom=scale;label.textContent=Math.round(scale*100)+'%';}
+document.querySelectorAll('[data-senate-zoom]').forEach(button=>button.onclick=()=>{factor=button.dataset.senateZoom==='fit'?1:Math.max(.35,Math.min(1,factor*(button.dataset.senateZoom==='out'?.85:1.15)));fitSenate();});
 new ResizeObserver(fitSenate).observe(preview);fitSenate();
 const frame=document.querySelector('.network-live');
 function fitGraph(){
@@ -812,14 +838,19 @@ function fitGraph(){
  network.setSize(frame.clientWidth+'px',frame.clientHeight+'px');network.redraw();network.fit({animation:false});return true;
 }
 document.querySelectorAll('[data-network-action]').forEach(button=>button.onclick=()=>{
+ clearInterval(fitTimer);
  if(button.dataset.networkAction==='recenterNetworkBtn'){fitGraph();return;}
  frame.contentDocument?.getElementById(button.dataset.networkAction)?.click();
 });
+let fitTimer;
+function scheduleFit(){clearInterval(fitTimer);let attempts=0;fitTimer=setInterval(()=>{fitGraph();if(++attempts>=12)clearInterval(fitTimer);},150);}
+frame.addEventListener('network-view-changed',scheduleFit);
+new ResizeObserver(scheduleFit).observe(frame);
 frame.setAttribute('scrolling','no');
 frame.addEventListener('load',()=>{
  const doc=frame.contentDocument;if(!doc)return;
  const style=doc.createElement('style');style.textContent='html,body{height:100%!important;min-height:0!important;overflow:hidden!important}body.embed-mode.explore-locked .network-view.active .visNetwork{min-height:0!important;height:100%!important}.topbar,.network-toolbar,.network-view-toggle,.network-tool-actions,.graph-legend{display:none!important}';doc.head.append(style);
- let tries=0;const ready=setInterval(()=>{tries++;if(fitGraph()||tries>=30)clearInterval(ready);},150);
+ scheduleFit();
 });
 })();
 </script></body></html>
