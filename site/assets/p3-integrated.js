@@ -80,7 +80,7 @@ function openExplanation(key,before='See source code',after='See validated outpu
   }));
   if(!panel.open)panel.show();
   panel.scrollTop=0;renderJourney(0);
-  if(isSource){workspace.scrollIntoView({block:'start',behavior:'instant'});requestAnimationFrame(()=>revealSourceField(target));}
+  if(isSource&&!root.classList.contains('p3-ptr-only')){workspace.scrollIntoView({block:'start',behavior:'instant'});requestAnimationFrame(()=>revealSourceField(target));}
 }
 function highlightConcept(id){
   $('popup-code').querySelectorAll('[data-concepts]').forEach(part=>part.classList.toggle('concept-active',Boolean(id)&&part.dataset.concepts.split(' ').includes(id)));
