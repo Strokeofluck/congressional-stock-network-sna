@@ -210,6 +210,7 @@ window.addEventListener('scroll',hideCodeTooltip,{passive:true});
 window.addEventListener('resize',hideCodeTooltip);
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&$('explanation').open)$('explanation').close();});
 $('explanation').addEventListener('close',()=>{
+  if($('explanation').dataset.promoting==='true'){delete $('explanation').dataset.promoting;return;}
   hideCodeTooltip();
   root.querySelector('.workspace').classList.remove('inspecting');
   root.querySelectorAll('.active-source').forEach(n=>{n.classList.remove('active-source');n.removeAttribute('aria-current');});
@@ -412,6 +413,6 @@ root.addEventListener('ptr-open-code',event=>{
  openExplanation('House:'+key,field?.before||'',field?.after||'',button);
  const panel=$('explanation');root.append(panel);panel.dataset.placement='page';
  root.querySelector('.workspace').classList.remove('inspecting');
- panel.focus({preventScroll:true});renderJourney(0);
+ panel.dataset.promoting='true';panel.close();panel.showModal();panel.focus({preventScroll:true});renderJourney(0);
 });
 })();
