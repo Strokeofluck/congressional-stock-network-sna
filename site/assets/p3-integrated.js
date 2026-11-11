@@ -159,7 +159,7 @@ function renderJourney(index){
   journeyIndex=index;const step=journey[index],focus=new Set(step.focus||[step.line]);
   $('journey-title').textContent=step.title;$('journey-why').textContent=step.why;
   $('journey-count').textContent=`Step ${index+1} of ${journey.length}`;
-  $('popup-filename').textContent=step.file;
+  $('popup-filename').textContent=step.file.split('/').pop();$('popup-filename').title=step.file;
   const fullFile=P.code_files?.[step.file],lines=fullFile||step.code.split('\n'),firstLine=fullFile?1:step.line;
   if(renderedCodeFile!==step.file){
     $('popup-code').replaceChildren(...lines.map((text,offset)=>{
