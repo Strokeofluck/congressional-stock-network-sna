@@ -103,7 +103,7 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
 #wrangle-challenge .p3-ptr-only .document{padding-top:0!important}
 #wrangle-challenge .p3-ptr-only:not(.code-docked) .pdf-sheet{margin-top:-12%;width:100%!important}
 #wrangle-challenge .p3-ptr-only .source-pane{min-height:0!important}
-</style></head><body><header><a href="./">Sean Ryan · Data Wrangling</a><nav hidden><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Question & sources</p><h1>How can public disclosures reveal shared stock purchases?</h1><p class="lede">I chose this project to make congressional financial records traceable, searchable, and usable for reporting.</p>
+</style><style>.join-checklist li.join-check-note{font-size:12px;line-height:1.45;color:#606b7b;padding-left:14px}.join-checklist li.join-check-note:before{content:none}.join-check-note>span{position:absolute;left:0;color:#287de0;font-weight:700}.join-checklist li sup{font-size:11px;color:#287de0;margin-left:2px}</style></head><body><header><a href="./">Sean Ryan · Data Wrangling</a><nav hidden><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Question & sources</p><h1>How can public disclosures reveal shared stock purchases?</h1><p class="lede">I chose this project to make congressional financial records traceable, searchable, and usable for reporting.</p>
 <div class="original-grid">
 <figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/house-ptr-20016861.svg" data-title="House Clerk · John McGuire · Filing 20016861" aria-label="Enlarge actual House PTR"><img src="assets/house-ptr-20016861.svg" alt="Actual House PTR filed by Hon. John McGuire on May 16, 2025"></button><figcaption>John McGuire · filed May 16, 2025 · <a href="demos/data/raw/2025_pdfs/20016861.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
 <figure class="original-record"><div class="record-heading"><h3>Senate report · archived HTML (restyled)</h3><span>U.S. Senate eFD</span></div><p class="record-count">583 scraped and archived HTML reports → 5,069 parsed rows<br><strong>518 eligible 2025 stock/fund rows</strong></p><div class="senate-native-preview"><div class="senate-live-report" aria-label="Archived Senate disclosure rendered as text"><div class="senate-agency">UNITED STATES SENATE · FINANCIAL DISCLOSURES</div><h1>
@@ -439,9 +439,9 @@ for tr in table.select('tbody tr'):
 <ul>
 <li><strong>No records lost or multiplied.</strong> <b>6,394 House</b> and <b>518 Senate</b> rows still counted.</li>
 <li><strong>One row per ticker and month.</strong> No duplicate or missing keys.</li>
-<li><strong>All combinations kept.</strong> <b>3,760</b> ticker-month pairs; <b>160</b> appear in both sources.</li>
+<li><strong>All combinations kept.</strong> <b>3,760</b> ticker-month pairs; <b>160</b><sup aria-label="See explanation">*</sup> appear in both sources.</li>
 <li><strong>Dates stay in 2025.</strong> No months outside the study year.</li>
-<li><strong>Counts make sense.</strong> Positive whole numbers only.</li>
+<li><strong>Counts make sense.</strong> Positive whole numbers only.</li><li class="join-check-note"><span aria-hidden="true">*</span> A ticker-month pair means one ticker in one month. <strong>160 pairs appear in both House and Senate records</strong>—not 160 trades or people.</li>
 </ul>
 </section>
 </div>
