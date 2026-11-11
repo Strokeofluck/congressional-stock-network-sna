@@ -14,7 +14,7 @@ This repository adapts my congressional disclosure and data-wrangling project fo
 - [Methods and findings](METHODS.md)
 - [Data provenance](DATA_PROVENANCE.md)
 
-The site has a **Present** button and optional speaker notes. Use left/right arrows to move between sections and **N** to toggle notes. It works as a local HTML file, with no external libraries required for the presentation itself.
+The site opens as a slide deck with **Next** and **Previous** buttons and a slide counter. Use left/right arrows or Page Up/Page Down to move, Home/End to jump to the first/last slide, and **N** to toggle speaker notes. **Scroll view** (or Escape) restores the full walkthrough; **Present** returns to slides. Long source examples and interactive demos scroll within their slide. Source links and the final sources slide remain accessible. It works as a local HTML file, with no external libraries required for the presentation itself.
 
 ## Findings from the frozen 2025 extract
 
