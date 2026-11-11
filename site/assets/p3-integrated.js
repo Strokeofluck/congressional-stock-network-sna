@@ -409,6 +409,7 @@ renderChamber();renderJoin();buildResultHead();applyFilters();showView('sources'
 
 root.addEventListener('ptr-open-code',event=>{
  const {key,button}=event.detail,P=window.P3;
+ const slide=root.closest('section'),savedSlideScroll=slide?.scrollTop||0,documentPane=$('document'),savedDocumentScroll=documentPane.scrollTop;
  const source=P.sources.find(s=>s.chamber==='House');
  const field=source.fields.find(f=>f.key===key&&String(f.row||'')===String(button.dataset.row||''))||source.fields.find(f=>f.key===key);
  openExplanation('House:'+key,field?.before||'',field?.after||'',button);
@@ -420,5 +421,6 @@ root.addEventListener('ptr-open-code',event=>{
   link.target='_blank';link.rel='noopener';$('popup-title').after(link);
  }
  panel.focus({preventScroll:true});renderJourney(0);
+ documentPane.scrollTop=savedDocumentScroll;if(slide)slide.scrollTop=savedSlideScroll;
 });
 })();
