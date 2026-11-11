@@ -18,6 +18,14 @@
 .p3-ptr-only .workspace{display:block!important;max-width:1100px;margin:0 auto;border:0}.p3-ptr-only .pdf-sheet{max-width:1100px;aspect-ratio:1.35;overflow:hidden}.p3-ptr-only .document{padding:0;overflow:visible}.p3-ptr-only .source-pane{height:auto!important}.p3-ptr-only .ptr-compact-detail{position:absolute;right:10px;top:12px;z-index:8;width:min(390px,42%);padding:18px;background:#fff;border:1px solid #b6cef0;box-shadow:0 5px 24px #182d4920;border-radius:6px}.p3-ptr-only .ptr-compact-detail[hidden]{display:none}.ptr-compact-detail h3{font-size:21px;margin:0 20px 12px 0}.ptr-compact-detail p{font-size:15px}.ptr-compact-detail pre{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f5fa;padding:12px}.ptr-detail-close{float:right;border:0;padding:2px 6px}
 #wrangle-challenge>.identity{max-width:1100px;width:100%;margin:14px auto 0}
 @media(max-width:850px){.senate-native-preview{height:500px}.p3-ptr-only .pdf-sheet{aspect-ratio:1.05}.p3-ptr-only .ptr-compact-detail{position:relative;width:100%;right:auto;top:auto;margin-bottom:16px}.network-views button{font-size:12px}}
+</style><style>
+/* Keep hotspot percentages tied to the full PDF page; crop its parent only. */
+.p3-ptr-only .pdf-sheet{aspect-ratio:auto!important;overflow:visible!important;transform:translateY(-16%)}
+.p3-ptr-only .document{height:clamp(380px,46vw,580px);overflow:hidden!important;max-height:none}
+.senate-live-report table{min-width:900px}
+.senate-live-report th{white-space:nowrap}
+.senate-live-report td:nth-child(2),.senate-live-report td:nth-child(3),.senate-live-report td:nth-child(4),.senate-live-report td:nth-child(8){white-space:nowrap}
+.senate-live-report th:nth-child(5){min-width:170px}
 </style></head><body><header><a href="./">Sean Ryan · Data Wrangling</a><nav><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Question & sources · 45 seconds</p><h1>How can public disclosures reveal shared stock purchases?</h1><p class="lede">I chose this project to make congressional financial records traceable, searchable, and usable for reporting.</p>
 <div class="original-grid">
 <figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/house-ptr-20016861.svg" data-title="House Clerk · John McGuire · Filing 20016861" aria-label="Enlarge actual House PTR"><img src="assets/house-ptr-20016861.svg" alt="Actual House PTR filed by Hon. John McGuire on May 16, 2025"></button><figcaption>John McGuire · filed May 16, 2025 · <a href="demos/data/raw/2025_pdfs/20016861.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
@@ -406,7 +414,7 @@ controls.className='deck-controls';controls.setAttribute('aria-label','Slide nav
 controls.innerHTML='<button type="button" id="slide-prev">← Previous</button><span class="deck-status" role="status" aria-live="polite"></span><button type="button" id="slide-next">Next →</button>';
 document.body.append(controls);
 const prev=controls.querySelector('#slide-prev'),next=controls.querySelector('#slide-next'),status=controls.querySelector('.deck-status');
-const labels={'wrangle-question':'Original records','wrangle-challenge':'P3 · extraction & verification','wrangle-finding':'Interactive network'};
+const labels={'wrangle-question':'Original records','wrangle-challenge':'Highlighted PTR','wrangle-finding':'Interactive network'};
 let current=0;
 function resize(){document.documentElement.style.setProperty('--deck-header',document.querySelector('header').getBoundingClientRect().height+'px');document.documentElement.style.setProperty('--deck-controls',controls.getBoundingClientRect().height+'px');}
 function targetIndex(target){return slides.findIndex(slide=>slide===target||(target&&slide.contains(target)));}
