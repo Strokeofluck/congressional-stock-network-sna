@@ -405,4 +405,13 @@ $('reset-results').addEventListener('click',()=>{
 });
 renderChamber();renderJoin();buildResultHead();applyFilters();showView('sources');
 
+root.addEventListener('ptr-open-code',event=>{
+ const {key,button}=event.detail,P=window.P3;
+ const source=P.sources.find(s=>s.chamber==='House');
+ const field=source.fields.find(f=>f.key===key&&String(f.row||'')===String(button.dataset.row||''))||source.fields.find(f=>f.key===key);
+ openExplanation('House:'+key,field?.before||'',field?.after||'',button);
+ const panel=$('explanation');root.append(panel);panel.dataset.placement='page';
+ root.querySelector('.workspace').classList.remove('inspecting');
+ panel.focus({preventScroll:true});renderJourney(0);
+});
 })();
