@@ -61,3 +61,12 @@ dialog.walkthrough{box-shadow:none}dialog.walkthrough::backdrop{background:trans
 .p3-integrated .source-pane{min-width:0}
 .p3-integrated .table-scroll{max-width:100%;overflow:auto}
 @media(max-width:850px){.p3-integrated .workspace,.p3-integrated .workspace.inspecting{grid-template-columns:1fr}.p3-integrated .walkthrough[open][data-placement="source"]{max-height:none;height:600px}.p3-integrated .guide{padding:18px 0;border:0}}
+
+/* Readable code beside the source, with only the code file scrolling. */
+.p3-integrated .walkthrough[open][data-placement="source"]{height:820px;max-height:none}
+.p3-integrated .walkthrough[data-placement="source"] h2{font-size:25px}
+.p3-integrated .walkthrough[data-placement="source"] #popup-why{font-size:14px}
+.p3-integrated .walkthrough[data-placement="source"] .journey-description p{font-size:14px}
+.p3-integrated .walkthrough[data-placement="source"] .value-pair code{font-size:13px}
+.p3-integrated .walkthrough #popup-code{min-height:280px;font-size:14px}
+.p3-integrated .walkthrough .line-explanation{font-size:13px}

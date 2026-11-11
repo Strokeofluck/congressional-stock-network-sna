@@ -44,6 +44,7 @@ function bindSourceField(button,key,field){
 function showView(name){
   if(!['sources','join','data','notes'].includes(name))name='sources';
   if($('explanation').open)$('explanation').close();
+  hideFieldTooltip();hideCodeTooltip();
   root.querySelectorAll('.view').forEach(n=>n.hidden=n.id!==name);
   root.querySelectorAll('[data-view]').forEach(n=>n.setAttribute('aria-pressed',String(n.dataset.view===name)));
   
