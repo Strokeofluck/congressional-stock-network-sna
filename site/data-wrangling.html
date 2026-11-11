@@ -873,6 +873,10 @@ frame.addEventListener('load',()=>{
  const doc=frame.contentDocument;if(!doc)return;
  const style=doc.createElement('style');style.textContent='html,body{height:100%!important;min-height:0!important;overflow:hidden!important}body.embed-mode.explore-locked .network-view.active .visNetwork{min-height:0!important;height:100%!important}.topbar,.network-toolbar,.network-view-toggle,.network-tool-actions,.graph-legend{display:none!important}.network-card{border:0!important;border-radius:0!important;box-shadow:none!important}.stock-detail-drawer{top:8px!important;bottom:8px!important;height:calc(100vh - 16px)!important;max-height:calc(100vh - 16px)!important;z-index:99999!important}.stock-detail-drawer.open{display:flex!important;flex-direction:column!important}.stock-detail-body{flex:1!important;min-height:0!important;max-height:none!important;overflow:auto!important}';doc.head.append(style);
  
+ const nativeFit=frame.contentWindow.fitAffiliationNetwork;
+ if(nativeFit)frame.contentWindow.fitAffiliationNetwork=function(){
+  const result=nativeFit.apply(this,arguments);fitGraph();return result;
+ };
  // Keep node selection and detail drawers from resetting the camera.
  let selectedCamera=null,down=null;
  doc.addEventListener('pointerdown',event=>{
