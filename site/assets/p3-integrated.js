@@ -2,7 +2,7 @@
 (() => {
 const root=document.querySelector('.p3-integrated');
 const base=new URL('demos/p3/',location.href);
-window.P3.sources.forEach(source=>{if(source.image)source.image=source.chamber==='House'?new URL('assets/house-ptr-20016861.svg',location.href).href:new URL(source.image,base).href;if(source.archive)source.archive=new URL(source.archive,base).href;});
+window.P3.sources.forEach(source=>{if(source.image)source.image=source.chamber==='House'?new URL('assets/house-ptr-'+source.id+'.svg',location.href).href:new URL(source.image,base).href;if(source.archive)source.archive=new URL(source.archive,base).href;});
 const P=window.P3, $=id=>root.querySelector("#"+CSS.escape(id));
 const repo='https://github.com/Strokeofluck/Data-Wrangling-and-Web-Scraping-P3/blob/main/';
 let chamber='House',selectedSource=null,page=0,filtered=[],returnFocus=null;
