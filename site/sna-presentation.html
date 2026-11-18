@@ -110,7 +110,29 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
 .sna-metrics{display:grid;gap:14px;margin:24px 0}.sna-metrics div{display:flex;gap:20px;align-items:baseline}.sna-metrics strong{font-size:38px;line-height:1.15;min-width:140px;color:#1264bb}.sna-metrics span{font-size:17px}
 .sna-takeaway{border-left:3px solid #2780e3;padding:10px 20px;background:#edf5ff;font-size:21px;margin-top:24px}.sna-source-links{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;margin-top:16px}
 @media(max-width:850px){.sna-results-grid{grid-template-columns:1fr;gap:20px}.sna-metrics strong{font-size:30px}.sna-results-grid p,.sna-results-grid li{font-size:16px}}
-</style></head><body><header><a href="sna-presentation.html#wrangle-question">Sean Ryan · DSA 295</a><nav hidden><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Research question · DSA 295 · November 23, 2026</p><h1>Which stocks connect House disclosure filers?</h1><p class="lede">Which stocks have the most distinct buyers, and how does shared purchasing connect filers to one another?</p><p class="sna-context">The source examples below explain how the records become data. The network findings use a separate frozen House-only purchase extract.</p>
+</style><style>
+.original-grid > .original-record {
+  grid-template-rows: minmax(74px, auto) minmax(76px, auto) var(--record-preview-height) auto auto auto;
+}
+.original-grid .record-heading {
+  display: block;
+}
+.original-grid .record-heading h3 {
+  line-height: 1.2;
+}
+.original-grid .record-heading span {
+  display: block;
+  margin-top: 5px;
+}
+@media (max-width: 640px) {
+  .original-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .original-grid > .original-record {
+    grid-template-rows: auto auto var(--record-preview-height) auto auto auto;
+    row-gap: 8px;
+  }
+}
+</style>
+</head><body><header><a href="sna-presentation.html#wrangle-question">Sean Ryan · DSA 295</a><nav hidden><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Research question · DSA 295 · November 23, 2026</p><h1>Which stocks connect House disclosure filers?</h1><p class="lede">Which stocks have the most distinct buyers, and how does shared purchasing connect filers to one another?</p><p class="sna-context">The source examples below explain how the records become data. The network findings use a separate frozen House-only purchase extract.</p>
 <div class="original-grid">
 <figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/house-ptr-20030924.svg" data-title="House Clerk · Marjorie Taylor Greene · Filing 20030924" aria-label="Enlarge actual House PTR"><img src="assets/house-ptr-20030924.svg" alt="Actual one-page House PTR signed by Hon. Marjorie Taylor Greene on August 15, 2025"></button><figcaption>Marjorie Taylor Greene · signed August 15, 2025 · <a href="demos/data/raw/2025_pdfs/20030924.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
 <figure class="original-record"><div class="record-heading"><h3>Senate report · archived HTML (restyled)</h3><span>U.S. Senate eFD</span></div><p class="record-count">583 scraped and archived HTML reports → 5,069 parsed rows<br><strong>518 eligible 2025 stock/fund rows</strong></p><div class="senate-native-preview"><div class="senate-live-report" aria-label="Archived Senate disclosure rendered as text"><div class="senate-agency">UNITED STATES SENATE · FINANCIAL DISCLOSURES</div><h1>
