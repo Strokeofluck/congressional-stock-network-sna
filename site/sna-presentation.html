@@ -132,7 +132,22 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
   }
 }
 </style>
-</head><body><header><a href="sna-presentation.html#wrangle-question">Sean Ryan · DSA 295</a><nav hidden><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Research question · DSA 295 · November 23, 2026</p><h1>Which stocks connect House disclosure filers?</h1><p class="lede">Which stocks have the most distinct buyers, and how does shared purchasing connect filers to one another?</p><p class="sna-context">The source examples below explain how the records become data. The network findings use a separate frozen House-only purchase extract.</p>
+<style>
+#sna-results .ptr-ticker { color: inherit; background: transparent; border: 0; font-size: inherit; padding: 0; text-decoration: underline; text-underline-offset: .2em; }
+#sna-results .ptr-ticker:focus-visible, #sna-results .ptr-buyers button:focus-visible { outline: 2px solid #2780e3; outline-offset: 3px; }
+#sna-results tr:has(.ptr-ticker[aria-pressed="true"]) td { border-bottom: 2px solid #2780e3; }
+#sna-results .ptr-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+#sna-results .ptr-toolbar h3 { margin: 0; }
+#sna-results .ptr-buyers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; border-left: 2px solid #2780e3; padding-left: 14px; }
+#sna-results .ptr-buyers button { position: relative; text-align: left; color: inherit; background: transparent; border-color: #728196; line-height: 1.25; }
+#sna-results .ptr-buyers button[aria-pressed="true"] { background: #1264bb; color: white; }
+#sna-results .ptr-buyers button:nth-child(odd)::before { content: ""; position: absolute; top: 50%; left: -16px; width: 14px; border-top: 1px solid #2780e3; }
+#sna-results .ptr-buyers button:nth-child(even)::before { content: ""; position: absolute; top: 50%; left: -17px; width: 16px; border-top: 1px solid #2780e3; }
+#sna-results .ptr-filings { margin-top: 12px; }
+#sna-results .ptr-filings ul { margin: 6px 0; padding-left: 20px; }
+#sna-results .ptr-filings li { font-size: 15px; margin-bottom: 5px; }
+#sna-results [hidden] { display: none !important; }
+</style></head><body><header><a href="sna-presentation.html#wrangle-question">Sean Ryan · DSA 295</a><nav hidden><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Research question · DSA 295 · November 23, 2026</p><h1>Which stocks connect House disclosure filers?</h1><p class="lede">Which stocks have the most distinct buyers, and how does shared purchasing connect filers to one another?</p><p class="sna-context">The source examples below explain how the records become data. The network findings use a separate frozen House-only purchase extract.</p>
 <div class="original-grid">
 <figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/house-ptr-20030924.svg" data-title="House Clerk · Marjorie Taylor Greene · Filing 20030924" aria-label="Enlarge actual House PTR"><img src="assets/house-ptr-20030924.svg" alt="Actual one-page House PTR signed by Hon. Marjorie Taylor Greene on August 15, 2025"></button><figcaption>Marjorie Taylor Greene · signed August 15, 2025 · <a href="demos/data/raw/2025_pdfs/20030924.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
 <figure class="original-record"><div class="record-heading"><h3>Senate report · archived HTML (restyled)</h3><span>U.S. Senate eFD</span></div><p class="record-count">583 scraped and archived HTML reports → 5,069 parsed rows<br><strong>518 eligible 2025 stock/fund rows</strong></p><div class="senate-native-preview"><div class="senate-live-report" aria-label="Archived Senate disclosure rendered as text"><div class="senate-agency">UNITED STATES SENATE · FINANCIAL DISCLOSURES</div><h1>
@@ -514,7 +529,7 @@ for tr in table.select('tbody tr'):
 <p class="network-description">Blue and red dots are House members; gold dots are stocks they reported buying. Green labels show committee and subcommittee links.</p><div class="network-summary"><p><strong>AMZN connects 19 House filers</strong>, the most in this frozen purchase extract. The connections show shared reported stock choices, without establishing coordination.</p><p class="network-scope"><strong>House-only network:</strong> 3,179 accepted purchase records → 45 displayed filers · 355 shared tickers · 1,291 filer–ticker ties. Senate records are outside this graph.</p></div>
 <nav class="network-views" aria-label="Network layers"><button type="button" data-network-view="full" aria-pressed="true">Stocks + all committees + subcommittees</button><button type="button" data-network-view="committee" aria-pressed="false">Stocks + committees</button><button type="button" data-network-view="stock" aria-pressed="false">Member–stock</button><button type="button" data-network-view="members" aria-pressed="false">Member–member</button><span class="network-zoom-tools"><button type="button" data-network-action="zoomOutNetworkBtn" aria-label="Zoom network out">−</button><button type="button" data-network-action="recenterNetworkBtn">Fit network</button><button type="button" data-network-action="zoomInNetworkBtn" aria-label="Zoom network in">+</button></span></nav><div class="native-network-legend"><span><i style="background:#2f6fdb"></i>Democrat</span><span><i style="background:#d64b4b"></i>Republican</span><span><i style="background:#d9a928"></i>Stock</span><span><i class="square" style="background:#667a70"></i>Committee</span><span><i class="square" style="background:#a8b7ae"></i>Subcommittee</span></div><span class="network-load-status" role="status">Loading network…</span><iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/?embed=1#view=full&amp;layout=party" title="Interactive congressional stock-purchase network" loading="eager"></iframe>
 <div class="network-footer"><p class="limitation"><strong>Limitation:</strong> Handwritten financial disclosure records were excluded because manually transcribing and cleaning them would have taken too much time for the scope of this project.</p><a href="https://strokeofluck.github.io/congressional-stock-network-2025/" target="_blank" rel="noopener">Open full network ↗</a></div>
-<p class="identity">Sean Ryan · <strong>sryan3</strong> · DSA 295 (003)</p><div class="notes">The finished structured records support a network. Each line links a House filer to a stock reported as purchased. The shared-stock analysis retains tickers with at least two filers and counts repeated purchases once per filer-ticker connection. AMZN connects 19 filers, the highest stock degree in this extract. The interactive project also has committee views; those committee links are outside the simple shared-stock metrics quoted here. This is a separate frozen House-only purchase extract, not the P3 House-Senate joined table. Incomplete extraction and excluded transaction types limit the findings, and overlap alone is not evidence of coordination.</div></section><section id="sna-results"><p class="eyebrow">04 / Degree and one-mode projection</p><h2>Popular stocks connect many filers</h2><div class="sna-results-grid"><article><h3>Stock degree</h3><p>Degree counts distinct filers who reported buying a stock.</p><table><thead><tr><th>Ticker</th><th>Filers</th></tr></thead><tbody><tr><td>AMZN</td><td>19</td></tr><tr><td>AAPL</td><td>15</td></tr><tr><td>AVGO</td><td>15</td></tr><tr><td>MSFT</td><td>14</td></tr><tr><td>NVDA</td><td>14</td></tr></tbody></table></article><article><h3>Filer–filer projection</h3><p>Connect two filers if they reported buying at least one of the same tickers. Tie weight counts distinct shared tickers.</p><div class="sna-metrics"><div><strong>494</strong><span>connected filer pairs</span></div><div><strong>49.9%</strong><span>of possible pairs connected</span></div><div><strong>45 / 45</strong><span>filers in one connected component</span></div></div><p class="sna-small">Density = 494 ÷ (45 × 44 ÷ 2). These are unweighted connections; repeated purchases do not create extra ties.</p></article></div><p class="sna-takeaway">AMZN has the highest stock degree. About half of possible filer pairs share at least one purchased ticker in this filtered graph.</p><div class="notes">About 50 seconds. Stock degree counts people, not purchase dollars or transaction frequency. Amazon links 19 filers, followed by Apple and Broadcom at 15. For the one-mode projection, retain the filers and connect any two who share a ticker. There are 494 pairs out of 990 possible pairs, or 49.9 percent. All 45 filers are connected through some path. Popular stocks can generate many of these links.</div><p class="identity">Sean Ryan · sryan3 · DSA 295 (003) · <a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/METHODS.md" target="_blank" rel="noopener">Methods and calculations ↗</a></p></section>
+<p class="identity">Sean Ryan · <strong>sryan3</strong> · DSA 295 (003)</p><div class="notes">The finished structured records support a network. Each line links a House filer to a stock reported as purchased. The shared-stock analysis retains tickers with at least two filers and counts repeated purchases once per filer-ticker connection. AMZN connects 19 filers, the highest stock degree in this extract. The interactive project also has committee views; those committee links are outside the simple shared-stock metrics quoted here. This is a separate frozen House-only purchase extract, not the P3 House-Senate joined table. Incomplete extraction and excluded transaction types limit the findings, and overlap alone is not evidence of coordination.</div></section><section id="sna-results"><p class="eyebrow">04 / Degree and one-mode projection</p><h2>Popular stocks connect many filers</h2><div class="sna-results-grid"><article><h3>Stock degree</h3><p>Degree counts distinct filers who reported buying a stock. Hover or click a ticker to trace its PTRs.</p><table><thead><tr><th>Ticker</th><th>Filers</th></tr></thead><tbody><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AMZN</button></td><td>19</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AAPL</button></td><td>15</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AVGO</button></td><td>15</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">MSFT</button></td><td>14</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">NVDA</button></td><td>14</td></tr></tbody></table></article><article id="ptr-projection"><h3>Filer–filer projection</h3><p>Connect two filers if they reported buying at least one of the same tickers. Tie weight counts distinct shared tickers.</p><div class="sna-metrics"><div><strong>494</strong><span>connected filer pairs</span></div><div><strong>49.9%</strong><span>of possible pairs connected</span></div><div><strong>45 / 45</strong><span>filers in one connected component</span></div></div><p class="sna-small">Density = 494 ÷ (45 × 44 ÷ 2). These are unweighted connections; repeated purchases do not create extra ties.</p></article><article id="ptr-match-panel" hidden><div class="ptr-toolbar"><h3 id="ptr-match-title" aria-live="polite">Matching PTRs</h3><button id="ptr-match-close" type="button">Back to network stats</button></div><p id="ptr-match-status" class="sna-small" role="status"></p><div id="ptr-match-buyers" class="ptr-buyers"></div><div id="ptr-match-filings" class="ptr-filings" aria-live="polite"></div></article></div><p class="sna-takeaway">AMZN has the highest stock degree. About half of possible filer pairs share at least one purchased ticker in this filtered graph.</p><div class="notes">About 50 seconds. Stock degree counts people, not purchase dollars or transaction frequency. Amazon links 19 filers, followed by Apple and Broadcom at 15. For the one-mode projection, retain the filers and connect any two who share a ticker. There are 494 pairs out of 990 possible pairs, or 49.9 percent. All 45 filers are connected through some path. Popular stocks can generate many of these links.</div><p class="identity">Sean Ryan · sryan3 · DSA 295 (003) · <a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/METHODS.md" target="_blank" rel="noopener">Methods and calculations ↗</a></p></section>
 <section id="sna-meaning"><p class="eyebrow">05 / Interpretation and limitations</p><h2>Shared purchases show overlap, not coordination</h2><div class="sna-results-grid"><article><h3>What the network tells us</h3><p>It identifies the stocks linking the widest group of filers and shows how their reported purchasing overlaps.</p><p>A shared-stock tie can come from purchases made months apart. It does not establish a personal relationship, coordinated trading, privileged information, returns, or wrongdoing.</p></article><article><h3>What limits the findings</h3><ul><li>The frozen extract contains 3,179 accepted 2025 stock-purchase records; it is not a complete census.</li><li>The shared-stock graph retains 45 of 55 filers and 355 of 855 tickers. Ten filers have no shared ticker.</li><li>Sales, other asset types, unresolved tickers, and handwritten records are outside the analysis.</li><li>Disclosures may report spouse or dependent transactions. Committee links are context and are excluded from these metrics.</li></ul></article></div><p class="sna-takeaway">Next step: compare purchase timing and general stock popularity before treating any overlap as unusual.</p><div class="sna-source-links"><a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/METHODS.md" target="_blank" rel="noopener">Methods</a><a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/DATA_PROVENANCE.md" target="_blank" rel="noopener">Data provenance</a><a href="analysis.json" target="_blank">Calculated results</a><a href="data-wrangling.html" target="_blank" rel="noopener">Historical DSA 405 presentation ↗</a></div><div class="notes">About 40 seconds. My takeaway is descriptive: the network makes purchasing overlap visible and identifies widely shared stocks. It does not show why people bought them. The dataset is filtered and incomplete, and household transactions can appear under the filer's name. Comparing timing and market popularity would be necessary before investigating whether a pattern is unusual. The earlier data-wrangling presentation remains available at its original link.</div><p class="identity">Sean Ryan · sryan3 · DSA 295 (003) · November 23, 2026</p></section></main>
 <script src="demos/p3/data/project.js" defer></script><script src="assets/greene-source.js" defer></script><script src="assets/p3-integrated.js?v=greene-four-rows" defer></script><script>(() => {
 const slides = [...document.querySelectorAll('body > main > section')];
@@ -976,4 +991,130 @@ frame.addEventListener('load',()=>{
  scheduleFit();
 });
 })();
-</script><script>document.addEventListener('DOMContentLoaded',()=>{const root=document.querySelector('.p3-ptr-only');root.addEventListener('ptr-open-code',e=>{requestAnimationFrame(()=>{const pane=root.querySelector('#document'),button=e.detail.button;if(button&&pane){const field=button.getBoundingClientRect(),box=pane.getBoundingClientRect();pane.scrollTop+=field.top-box.top-32;}root.closest('section').scrollTop=0;});});});</script></body></html>
+</script><script>document.addEventListener('DOMContentLoaded',()=>{const root=document.querySelector('.p3-ptr-only');root.addEventListener('ptr-open-code',e=>{requestAnimationFrame(()=>{const pane=root.querySelector('#document'),button=e.detail.button;if(button&&pane){const field=button.getBoundingClientRect(),box=pane.getBoundingClientRect();pane.scrollTop+=field.top-box.top-32;}root.closest('section').scrollTop=0;});});});</script><script>
+(() => {
+  const buttons = [...document.querySelectorAll('#sna-results .ptr-ticker')];
+  const projection = document.getElementById('ptr-projection');
+  const panel = document.getElementById('ptr-match-panel');
+  const close = document.getElementById('ptr-match-close');
+  const title = document.getElementById('ptr-match-title');
+  const status = document.getElementById('ptr-match-status');
+  const buyers = document.getElementById('ptr-match-buyers');
+  const filings = document.getElementById('ptr-match-filings');
+  const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+  let source;
+  let active;
+  let pinned;
+  let hoverTimer;
+
+  async function loadFilings() {
+    const response = await fetch('purchase-data.csv');
+    if (!response.ok) throw new Error('Cannot load purchase data');
+    const csv = (await response.text()).replace(/^\uFEFF/, '');
+    // Match quoted fields (including embedded commas and line breaks) before delimiters.
+    const rows = [[]];
+    for (const [, quoted, plain, separator] of csv.matchAll(/(?:"((?:[^"]|"")*)"|([^",\r\n]*))(,|\r?\n|$)/g)) {
+      rows.at(-1).push(quoted === undefined ? plain : quoted.replace(/""/g, '"'));
+      if (separator !== ',') rows.push([]);
+    }
+    const headers = rows.shift();
+    const columns = Object.fromEntries(headers.map((name, index) => [name, index]));
+    const byTicker = new Map(buttons.map(button => [button.textContent, new Map()]));
+    for (const row of rows) {
+      const ticker = row[columns.ticker_v8_2_cleaned]?.trim().toUpperCase();
+      const people = byTicker.get(ticker);
+      if (!people) continue;
+      const person = row[columns.politician].replace(/^(Hon\.\s*|Honorable\s+)/i, '').trim();
+      const id = row[columns.filing_id];
+      const url = row[columns.original_pdf_url];
+      if (!/^https:\/\/disclosures-clerk\.house\.gov\/public_disc\/ptr-pdfs\/\d{4}\/\d+\.pdf$/.test(url)) continue;
+      if (!people.has(person)) people.set(person, new Map());
+      const reports = people.get(person);
+      if (!reports.has(id)) reports.set(id, { url, dates: new Set() });
+      reports.get(id).dates.add(row[columns.transaction_date]);
+    }
+    for (const button of buttons) {
+      const expected = Number(button.closest('tr').lastElementChild.textContent);
+      if (byTicker.get(button.textContent).size !== expected) throw new Error('Filer counts differ from slide');
+    }
+    return byTicker;
+  }
+
+  function showReports(person, reports, selectedButton) {
+    for (const button of buyers.children) button.setAttribute('aria-pressed', String(button === selectedButton));
+    const heading = document.createElement('strong');
+    heading.textContent = person + ' · ' + reports.size + (reports.size === 1 ? ' filing' : ' filings');
+    const list = document.createElement('ul');
+    for (const [id, report] of [...reports].sort(([a], [b]) => a.localeCompare(b))) {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = report.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'PTR ' + id + ' ↗';
+      const dates = [...report.dates].sort().map(date => dateFormat.format(new Date(date + 'T00:00:00Z')));
+      item.append(link, ' · Purchased ' + dates.join(', '));
+      list.append(item);
+    }
+    filings.replaceChildren(heading, list);
+  }
+
+  async function showTicker(button) {
+    if (active === button) return;
+    active = button;
+    for (const option of buttons) option.setAttribute('aria-pressed', String(option === button));
+    const ticker = button.textContent;
+    projection.hidden = true;
+    panel.hidden = false;
+    title.textContent = ticker + ' · Matching PTRs';
+    status.textContent = 'Loading filings…';
+    buyers.replaceChildren();
+    filings.replaceChildren();
+    source ??= loadFilings();
+    try {
+      const people = (await source).get(ticker);
+      if (active !== button) return;
+      const count = [...people.values()].reduce((total, reports) => total + reports.size, 0);
+      status.textContent = people.size + ' filers · ' + count + ' filings. Select a filer to open their PTRs.';
+      for (const [person, reports] of [...people].sort(([a], [b]) => a.localeCompare(b))) {
+        const choice = document.createElement('button');
+        choice.type = 'button';
+        choice.textContent = person;
+        choice.setAttribute('aria-pressed', 'false');
+        choice.addEventListener('click', () => showReports(person, reports, choice));
+        buyers.append(choice);
+      }
+    } catch {
+      source = undefined;
+      if (active !== button) return;
+      active = undefined;
+      status.textContent = 'Could not load the PTRs. Select the ticker again to retry.';
+    }
+  }
+
+  for (const button of buttons) {
+    const row = button.closest('tr');
+    row.addEventListener('pointerenter', event => {
+      if (event.pointerType !== 'mouse' || pinned) return;
+      hoverTimer = setTimeout(() => showTicker(button), 120);
+    });
+    row.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
+    button.addEventListener('click', () => {
+      clearTimeout(hoverTimer);
+      pinned = button;
+      showTicker(button);
+      if (window.matchMedia('(max-width: 850px)').matches) panel.scrollIntoView({ block: 'nearest' });
+    });
+  }
+  close.addEventListener('click', () => {
+    clearTimeout(hoverTimer);
+    const previous = active ?? pinned;
+    active = undefined;
+    pinned = undefined;
+    panel.hidden = true;
+    projection.hidden = false;
+    for (const button of buttons) button.setAttribute('aria-pressed', 'false');
+    previous?.focus();
+  });
+})();
+</script></body></html>
