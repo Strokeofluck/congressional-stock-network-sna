@@ -161,6 +161,14 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
 #sna-results .ptr-isolate-parties { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 #sna-results .ptr-isolate-parties strong { color: var(--party-ink, inherit); }
 #sna-results .ptr-isolate-parties ul { margin: 6px 0; padding-left: 20px; }
+</style><style>
+#sna-results .ptr-purchase-dates {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: .85;
+}
 </style></head><body><header><a href="sna-presentation.html#wrangle-question">Sean Ryan · DSA 295</a><nav hidden><a href="./">Full walkthrough ↗</a><button id="speaker-notes">Speaker notes</button><button id="present">Present</button></nav></header><main><section id="wrangle-question"><p class="eyebrow">01 / Research question · DSA 295 · November 23, 2026</p><h1>Which stocks connect House disclosure filers?</h1><p class="lede">Which stocks have the most distinct buyers, and how does shared purchasing connect filers to one another?</p><p class="sna-context">The source examples below explain how the records become data. The network findings use a separate frozen House-only purchase extract.</p>
 <div class="original-grid">
 <figure class="original-record"><div class="record-heading"><h3>House PTR · original PDF</h3><span>U.S. House Clerk</span></div><p class="record-count">515 downloaded PDFs → 7,667 parsed rows<br><strong>6,394 eligible 2025 stock/fund rows</strong></p><button class="record-image" type="button" data-zoom="assets/house-ptr-20030924.svg" data-title="House Clerk · Marjorie Taylor Greene · Filing 20030924" aria-label="Enlarge actual House PTR"><img src="assets/house-ptr-20030924.svg" alt="Actual one-page House PTR signed by Hon. Marjorie Taylor Greene on August 15, 2025"></button><figcaption>Marjorie Taylor Greene · signed August 15, 2025 · <a href="demos/data/raw/2025_pdfs/20030924.pdf" target="_blank" rel="noopener">Open captured PDF ↗</a></figcaption></figure>
@@ -1119,7 +1127,7 @@ frame.addEventListener('load',()=>{
       const people = (await source).get(ticker);
       if (active !== button) return;
       const count = [...people.values()].reduce((total, reports) => total + reports.size, 0);
-      status.textContent = people.size + ' filers · ' + count + ' filings. Select a filer to open their PTRs.';
+      status.textContent = people.size + ' filers · ' + count + ' filings. Dates show reported purchases in 2025. Select a filer for the original PTRs.';
       const sorted = [...people].sort(([a], [b]) => a.localeCompare(b));
       for (const party of ['Democrat', 'Republican', 'Party unavailable']) {
         const members = sorted.filter(([person]) => (filerParties[person] ?? 'Party unavailable') === party);
@@ -1132,7 +1140,13 @@ frame.addEventListener('load',()=>{
         for (const [person, reports] of members) {
           const choice = document.createElement('button');
           choice.type = 'button';
-          choice.textContent = person;
+          const name = document.createElement('span');
+          name.textContent = person;
+          const dates = [...new Set([...reports.values()].flatMap(report => [...report.dates]))].sort();
+          const dateLine = document.createElement('span');
+          dateLine.className = 'ptr-purchase-dates';
+          dateLine.textContent = dates.map(date => dateFormat.format(new Date(date + 'T00:00:00Z'))).join(' · ');
+          choice.append(name, dateLine);
           choice.setAttribute('aria-pressed', 'false');
           choice.addEventListener('click', () => showReports(person, reports, choice));
           group.append(choice);
