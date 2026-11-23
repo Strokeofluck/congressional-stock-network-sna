@@ -186,6 +186,7 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
 #committee-roster .committee-ticker-label { cursor: pointer; }
 #committee-roster .committee-purchase-group details[open] { flex: 0 0 100%; padding: 6px 8px; background: #72819610; border-radius: 4px; }
 #committee-roster .committee-ticker-peers { margin-top: 8px; font-size: 13px; }
+#committee-roster .committee-peer-party { color: var(--party-ink, inherit); }
 #committee-roster .committee-ticker-peers ul { margin: 3px 0 0; padding-left: 18px; }
 #sna-results #committee-roster .committee-ticker-label > strong { font-weight: 700; }
 #sna-results .ptr-ticker-controls {
@@ -1375,7 +1376,13 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
               const list = document.createElement('ul');
               for (const peer of peers) {
                 const person = document.createElement('li');
-                person.textContent = peer.name;
+                const party = peer.party.toLowerCase();
+                const label = party.startsWith('democrat') ? 'Democrat' :
+                  party.startsWith('republican') ? 'Republican' : peer.party || 'Party unavailable';
+                const name = document.createElement('span');
+                name.className = 'committee-peer-party ptr-party-' + label.toLowerCase();
+                name.textContent = peer.name + ' (' + label + ')';
+                person.append(name);
                 list.append(person);
               }
               matches.append(caption, list);
