@@ -1138,8 +1138,14 @@ frame.addEventListener('load',()=>{
       const people = byTicker.get(ticker);
       if (!people.has(person)) people.set(person, new Map());
       const reports = people.get(person);
-      if (!reports.has(id)) reports.set(id, { url, dates: new Set() });
-      reports.get(id).dates.add(row[columns.transaction_date]);
+      if (!reports.has(id)) reports.set(id, { url, dates: new Set(), namesByDate: new Map() });
+      const report = reports.get(id);
+      const date = row[columns.transaction_date];
+      report.dates.add(date);
+      if (assetName) {
+        if (!report.namesByDate.has(date)) report.namesByDate.set(date, new Set());
+        report.namesByDate.get(date).add(assetName);
+      }
     }
     for (const button of buttons) {
       const expected = Number(button.closest('tr').lastElementChild.textContent);
@@ -1147,7 +1153,7 @@ frame.addEventListener('load',()=>{
     }
     for (const [ticker, names] of namesByTicker) {
       byTicker.get(ticker).assetName = [...names].sort(([a, aCount], [b, bCount]) =>
-        bCount - aCount || a.localeCompare(b))[0][0];
+        bCount - aCount || a.localeCompare(b)).map(([name]) => name).join(' · ');
     }
     return byTicker;
   }
@@ -1379,14 +1385,18 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
             label.append(symbol);
             const description = document.createElement('p');
             description.className = 'ticker-security-name';
-            description.textContent = filings?.get(ticker)?.assetName || 'Security name unavailable in the filing data.';
             item.append(label, description);
             const reports = filings?.get(ticker)?.get(member.name) ?? [];
             const eligible = new Map();
+            const filingNames = new Set();
             for (const [id, report] of reports) {
               const matchedDates = [...report.dates].filter(date => dates.has(snapshotFor(date)));
               if (matchedDates.length) eligible.set(id, { url: report.url, dates: matchedDates });
+              for (const date of matchedDates) {
+                for (const name of report.namesByDate.get(date) ?? []) filingNames.add(name);
+              }
             }
+            description.textContent = [...filingNames].sort().join(' · ') || 'Security name unavailable in the matched filings.';
             if (eligible.size) {
               item.append(createBuyerCard(member.name, eligible).lastElementChild);
             } else {
