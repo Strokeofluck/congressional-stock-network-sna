@@ -1235,7 +1235,7 @@ frame.addEventListener('load',()=>{
 
   for (const button of buttons) bindTicker(button);
   search.addEventListener('input', renderTickerList);
-  allTickers.addEventListener('click', async () => {
+  async function toggleTickerList() {
     allTickers.disabled = true;
     try {
       if (!rankedTickers.length) {
@@ -1273,7 +1273,14 @@ frame.addEventListener('load',()=>{
     } finally {
       allTickers.disabled = false;
     }
+  }
+  allTickers.addEventListener('click', toggleTickerList);
+  const tickerObserver = new IntersectionObserver(entries => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    tickerObserver.disconnect();
+    if (!expanded && !allTickers.disabled) toggleTickerList();
   });
+  tickerObserver.observe(document.getElementById('sna-results'));
   close.addEventListener('click', () => {
     clearTimeout(hoverTimer);
     const previous = active ?? pinned;
