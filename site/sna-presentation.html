@@ -184,6 +184,9 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
 #sna-results #committee-roster .committee-ticker-label > span,
 #sna-results #committee-roster .committee-purchase-group h5 { font-weight: 400; }
 #committee-roster .committee-ticker-label { cursor: pointer; }
+#committee-roster .committee-purchase-group details[open] { flex: 0 0 100%; padding: 6px 8px; background: #72819610; border-radius: 4px; }
+#committee-roster .committee-ticker-peers { margin-top: 8px; font-size: 13px; }
+#committee-roster .committee-ticker-peers ul { margin: 3px 0 0; padding-left: 18px; }
 #sna-results #committee-roster .committee-ticker-label > strong { font-weight: 700; }
 #sna-results .ptr-ticker-controls {
   display: grid;
@@ -1313,9 +1316,12 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
     const matched = members.filter(member => member.tickers.length);
     const unmatched = members.filter(member => !member.tickers.length);
     status.textContent = members.length + ' members in the snapshots · ' + matched.length + ' with matched purchases';
-    const counts = new Map();
+    const buyersByTicker = new Map();
     for (const member of matched) {
-      for (const { ticker } of member.tickers) counts.set(ticker, (counts.get(ticker) ?? 0) + 1);
+      for (const { ticker } of member.tickers) {
+        if (!buyersByTicker.has(ticker)) buyersByTicker.set(ticker, []);
+        buyersByTicker.get(ticker).push(member);
+      }
     }
     for (const [label, group] of [['Reported purchases', matched], ['No matched purchase in the extract', unmatched]]) {
       if (!group.length) continue;
@@ -1343,7 +1349,8 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
             const item = document.createElement('details');
             const label = document.createElement('summary');
             label.className = 'committee-ticker-label';
-            const symbol = document.createElement(counts.get(ticker) > 1 ? 'strong' : 'span');
+            const peers = buyersByTicker.get(ticker).filter(buyer => buyer !== member);
+            const symbol = document.createElement(peers.length ? 'strong' : 'span');
             symbol.textContent = ticker;
             label.append(symbol);
             item.append(label);
@@ -1360,7 +1367,21 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
               missing.textContent = 'No matching PTR date available here.';
               item.append(missing);
             }
-            (counts.get(ticker) > 1 ? shared : other).append(item);
+            if (peers.length) {
+              const matches = document.createElement('div');
+              matches.className = 'committee-ticker-peers';
+              const caption = document.createElement('div');
+              caption.textContent = 'Also reported by';
+              const list = document.createElement('ul');
+              for (const peer of peers) {
+                const person = document.createElement('li');
+                person.textContent = peer.name;
+                list.append(person);
+              }
+              matches.append(caption, list);
+              item.append(matches);
+            }
+            (peers.length ? shared : other).append(item);
           }
           for (const [heading, tickers] of [['Matching stock purchases', shared], ['Other stock purchases', other]]) {
             if (!tickers.childElementCount) continue;
