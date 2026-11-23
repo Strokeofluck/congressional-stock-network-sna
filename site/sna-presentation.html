@@ -592,7 +592,7 @@ for tr in table.select('tbody tr'):
 <p id="committee-status" role="status"></p></div>
 <div id="committee-roster" class="ptr-buyers"></div>
 <p><a id="committee-source" href="https://strokeofluck.github.io/congressional-stock-network-2025/#view=full" target="_blank" rel="noopener">Open source explorer ↗</a></p>
-</div><div class="sna-results-grid"><article><h3>Stock degree</h3><p>Degree counts distinct filers who reported buying a stock. Hover or click a ticker to trace its PTRs.</p><div class="ptr-ticker-controls"><button id="ptr-all-tickers" type="button" aria-expanded="false" aria-controls="ptr-ticker-rows">Show all tickers</button><label id="ptr-ticker-filter" hidden>Find a ticker <input id="ptr-ticker-search" type="search" autocomplete="off"></label><p id="ptr-ticker-status" role="status" hidden></p></div><table><thead><tr><th>Ticker</th><th>Filers</th></tr></thead><tbody id="ptr-ticker-rows"><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AMZN</button></td><td>19</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AAPL</button></td><td>15</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AVGO</button></td><td>15</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">MSFT</button></td><td>14</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">NVDA</button></td><td>14</td></tr></tbody></table></article><article id="ptr-projection"><h3>Shared purchases among filers</h3><div class="sna-metrics"><div><strong>49.9%</strong><span>of filer pairs in the shared-stock network reported buying at least one of the same stocks.</span></div></div><p>494 of 990 possible pairs shared a ticker. All 45 filers in this network were connected, directly or through other filers.</p></article><article id="ptr-match-panel" hidden><div class="ptr-toolbar"><h3 id="ptr-match-title" aria-live="polite">Matching PTRs</h3><button id="ptr-match-close" type="button">Back to network stats</button></div><p id="ptr-match-asset" class="ticker-security-name"></p><p id="ptr-match-status" class="sna-small" role="status"></p><div id="ptr-match-buyers" class="ptr-buyers"></div></article></div><p class="sna-takeaway">Amazon (AMZN) had the most distinct buyers, with 19 filers.</p><details class="ptr-isolates"><summary>10 filers with no shared ticker</summary><p>These filers reported purchases in the 2025 House extract. None of their tickers were purchased by another filer in the extract.</p><div class="ptr-isolate-parties"><div><strong class="ptr-party-democrat">Democrats (3)</strong><ul><li>Debbie Wasserman Schultz</li><li>Judy Chu</li><li>Steve Cohen</li></ul></div><div><strong class="ptr-party-republican">Republicans (7)</strong><ul><li>Brad Knott</li><li>Laurel Lee</li><li>Neal Dunn</li><li>Peter Allen Stauber</li><li>Robert E. Latta</li><li>Victoria Spartz</li><li>Virginia Foxx</li></ul></div></div></details><div class="notes">About 50 seconds. Stock degree counts people, not purchase dollars or transaction frequency. Amazon links 19 filers, followed by Apple and Broadcom at 15. For the one-mode projection, connect two filers when both reported buying the same ticker. Tie weight counts distinct shared tickers. For density, each connected pair counts once, regardless of tie weight or repeated purchases. Among the 45 filers in the shared-stock network, there are 45 × 44 ÷ 2 = 990 possible pairs. Density is 494 ÷ 990, or 49.9 percent. All 45 are connected through some path. Popular stocks can generate many of these links.</div><p class="identity">Sean Ryan · sryan3 · DSA 295 (003) · <a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/METHODS.md" target="_blank" rel="noopener">Methods and calculations ↗</a></p></section>
+</div><div class="sna-results-grid"><article><h3>Stock degree</h3><p>Degree counts distinct filers who reported buying a stock. Hover or click a ticker to trace its PTRs.</p><table><thead><tr><th>Ticker</th><th>Filers</th></tr></thead><tbody id="ptr-top-tickers"><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AMZN</button></td><td>19</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AAPL</button></td><td>15</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">AVGO</button></td><td>15</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">MSFT</button></td><td>14</td></tr><tr><td><button class="ptr-ticker" type="button" aria-controls="ptr-match-panel" aria-pressed="false">NVDA</button></td><td>14</td></tr></tbody><tbody><tr><td colspan="2"><div class="ptr-ticker-controls"><button id="ptr-all-tickers" type="button" aria-expanded="false" aria-controls="ptr-ticker-rows">Show more tickers</button><label id="ptr-ticker-filter" hidden>Find a ticker <input id="ptr-ticker-search" type="search" autocomplete="off"></label><p id="ptr-ticker-status" role="status" hidden></p></div></td></tr></tbody><tbody id="ptr-ticker-rows"></tbody></table></article><article id="ptr-projection"><h3>Shared purchases among filers</h3><div class="sna-metrics"><div><strong>49.9%</strong><span>of filer pairs in the shared-stock network reported buying at least one of the same stocks.</span></div></div><p>494 of 990 possible pairs shared a ticker. All 45 filers in this network were connected, directly or through other filers.</p></article><article id="ptr-match-panel" hidden><div class="ptr-toolbar"><h3 id="ptr-match-title" aria-live="polite">Matching PTRs</h3><button id="ptr-match-close" type="button">Back to network stats</button></div><p id="ptr-match-asset" class="ticker-security-name"></p><p id="ptr-match-status" class="sna-small" role="status"></p><div id="ptr-match-buyers" class="ptr-buyers"></div></article></div><p class="sna-takeaway">Amazon (AMZN) had the most distinct buyers, with 19 filers.</p><details class="ptr-isolates"><summary>10 filers with no shared ticker</summary><p>These filers reported purchases in the 2025 House extract. None of their tickers were purchased by another filer in the extract.</p><div class="ptr-isolate-parties"><div><strong class="ptr-party-democrat">Democrats (3)</strong><ul><li>Debbie Wasserman Schultz</li><li>Judy Chu</li><li>Steve Cohen</li></ul></div><div><strong class="ptr-party-republican">Republicans (7)</strong><ul><li>Brad Knott</li><li>Laurel Lee</li><li>Neal Dunn</li><li>Peter Allen Stauber</li><li>Robert E. Latta</li><li>Victoria Spartz</li><li>Virginia Foxx</li></ul></div></div></details><div class="notes">About 50 seconds. Stock degree counts people, not purchase dollars or transaction frequency. Amazon links 19 filers, followed by Apple and Broadcom at 15. For the one-mode projection, connect two filers when both reported buying the same ticker. Tie weight counts distinct shared tickers. For density, each connected pair counts once, regardless of tie weight or repeated purchases. Among the 45 filers in the shared-stock network, there are 45 × 44 ÷ 2 = 990 possible pairs. Density is 494 ÷ 990, or 49.9 percent. All 45 are connected through some path. Popular stocks can generate many of these links.</div><p class="identity">Sean Ryan · sryan3 · DSA 295 (003) · <a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/METHODS.md" target="_blank" rel="noopener">Methods and calculations ↗</a></p></section>
 <section id="sna-meaning"><p class="eyebrow">05 / Interpretation and limitations</p><h2>Shared purchases show overlap, not coordination</h2><div class="sna-results-grid"><article><h3>What the network tells us</h3><p>It identifies the stocks linking the widest group of filers and shows how their reported purchasing overlaps.</p><p>A shared-stock tie can come from purchases made months apart. It does not establish a personal relationship, coordinated trading, privileged information, returns, or wrongdoing.</p></article><article><h3>What limits the findings</h3><ul><li>The frozen extract contains 3,179 accepted 2025 stock-purchase records; it is not a complete census.</li><li>The shared-stock graph retains 45 of 55 filers and 355 of 855 tickers. Ten filers have no shared ticker.</li><li>Sales, other asset types, unresolved tickers, and handwritten records are outside the analysis.</li><li>Disclosures may report spouse or dependent transactions. Committee links are context and are excluded from these metrics.</li></ul></article></div><div class="sna-source-links"><a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/METHODS.md" target="_blank" rel="noopener">Methods</a><a href="https://github.com/Strokeofluck/congressional-stock-network-sna/blob/main/DATA_PROVENANCE.md" target="_blank" rel="noopener">Data provenance</a><a href="analysis.json" target="_blank">Calculated results</a></div><div class="notes">About 40 seconds. My takeaway is descriptive: the network makes purchasing overlap visible and identifies widely shared stocks. It does not show why people bought them. The dataset is filtered and incomplete, and household transactions can appear under the filer's name. Comparing timing and market popularity would be necessary before investigating whether a pattern is unusual. The earlier data-wrangling presentation remains available at its original link.</div><p class="identity">Sean Ryan · sryan3 · DSA 295 (003) · November 23, 2026</p></section></main>
 <script src="demos/p3/data/project.js" defer></script><script src="assets/greene-source.js" defer></script><script src="assets/p3-integrated.js?v=greene-four-rows" defer></script><script>(() => {
 const slides = [...document.querySelectorAll('body > main > section')];
@@ -1197,7 +1197,7 @@ frame.addEventListener('load',()=>{
   async function showTicker(button) {
     if (active === button) return;
     active = button;
-    for (const option of tickerRows.querySelectorAll('.ptr-ticker')) option.setAttribute('aria-pressed', String(option === button));
+    for (const option of document.querySelectorAll('#sna-results .ptr-ticker')) option.setAttribute('aria-pressed', String(option === button));
     const ticker = button.textContent;
     projection.hidden = true;
     panel.hidden = false;
@@ -1249,10 +1249,10 @@ frame.addEventListener('load',()=>{
     const prefix = search.value.trim().toUpperCase();
     let visible = 0;
     for (const [ticker, row] of rankedTickers) {
-      row.hidden = expanded ? !ticker.startsWith(prefix) : !buttons.includes(row.querySelector('.ptr-ticker'));
+      row.hidden = !expanded || !ticker.startsWith(prefix);
       if (!row.hidden) visible++;
     }
-    tickerStatus.textContent = visible ? visible + ' of ' + rankedTickers.length + ' tickers' : 'No matching tickers.';
+    tickerStatus.textContent = visible ? visible + ' of ' + rankedTickers.length + ' additional tickers' : 'No matching additional tickers.';
   }
 
   for (const button of buttons) bindTicker(button);
@@ -1262,30 +1262,27 @@ frame.addEventListener('load',()=>{
     try {
       if (!rankedTickers.length) {
         const data = await getFilings();
-        const originalRows = new Map(buttons.map(button => [button.textContent, button.closest('tr')]));
-        rankedTickers = [...data].sort(([a, aPeople], [b, bPeople]) =>
+        const topTickers = new Set(buttons.map(button => button.textContent));
+        rankedTickers = [...data].filter(([ticker]) => !topTickers.has(ticker)).sort(([a, aPeople], [b, bPeople]) =>
           bPeople.size - aPeople.size || a.localeCompare(b)).map(([ticker, people]) => {
-          let row = originalRows.get(ticker);
-          if (!row) {
-            row = document.createElement('tr');
-            const cell = row.insertCell();
-            const button = document.createElement('button');
-            button.className = 'ptr-ticker';
-            button.type = 'button';
-            button.textContent = ticker;
-            button.setAttribute('aria-controls', panel.id);
-            button.setAttribute('aria-pressed', 'false');
-            cell.append(button);
-            row.insertCell().textContent = people.size;
-            bindTicker(button);
-          }
+          const row = document.createElement('tr');
+          const cell = row.insertCell();
+          const button = document.createElement('button');
+          button.className = 'ptr-ticker';
+          button.type = 'button';
+          button.textContent = ticker;
+          button.setAttribute('aria-controls', panel.id);
+          button.setAttribute('aria-pressed', 'false');
+          cell.append(button);
+          row.insertCell().textContent = people.size;
+          bindTicker(button);
           return [ticker, row];
         });
         tickerRows.append(...rankedTickers.map(([, row]) => row));
       }
       expanded = !expanded;
       allTickers.setAttribute('aria-expanded', String(expanded));
-      allTickers.textContent = expanded ? 'Show top five' : 'Show all tickers';
+      allTickers.textContent = expanded ? 'Hide additional tickers' : 'Show more tickers';
       filter.hidden = !expanded;
       tickerStatus.hidden = !expanded;
       renderTickerList();
@@ -1297,12 +1294,6 @@ frame.addEventListener('load',()=>{
     }
   }
   allTickers.addEventListener('click', toggleTickerList);
-  const tickerObserver = new IntersectionObserver(entries => {
-    if (!entries.some(entry => entry.isIntersecting)) return;
-    tickerObserver.disconnect();
-    if (!expanded && !allTickers.disabled) toggleTickerList();
-  });
-  tickerObserver.observe(document.getElementById('sna-results'));
   close.addEventListener('click', () => {
     clearTimeout(hoverTimer);
     const previous = active ?? pinned;
@@ -1310,7 +1301,7 @@ frame.addEventListener('load',()=>{
     pinned = undefined;
     panel.hidden = true;
     projection.hidden = false;
-    for (const button of tickerRows.querySelectorAll('.ptr-ticker')) button.setAttribute('aria-pressed', 'false');
+    for (const button of document.querySelectorAll('#sna-results .ptr-ticker')) button.setAttribute('aria-pressed', 'false');
     if (previous && !previous.closest('tr').hidden) previous.focus();
     else allTickers.focus();
   });
