@@ -174,6 +174,14 @@ body:not(.slide-deck) #wrangle-finding .network-live{height:650px;flex:none}
   font-size: 13px;
   white-space: nowrap;
 }
+#committee-roster .ptr-buyer-card { padding: 12px; }
+#committee-roster .ptr-party-group { gap: 10px; }
+#committee-roster .committee-purchase-group { margin-top: 12px; }
+#committee-roster .committee-purchase-group + .committee-purchase-group { border-top: 1px solid #72819655; padding-top: 10px; }
+#committee-roster .committee-purchase-group h5 { margin: 0 0 6px; font-size: 12px; }
+#committee-roster .committee-purchase-group > .ptr-purchase-dates { gap: 6px 10px; }
+#committee-roster .committee-ticker-label { cursor: pointer; font-weight: normal; }
+#committee-roster .committee-ticker-label strong { font-weight: 700; }
 #sna-results .ptr-ticker-controls {
   display: grid;
   justify-items: start;
@@ -1327,10 +1335,11 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
           const shared = document.createElement('div');
           const other = document.createElement('div');
           shared.className = other.className = 'ptr-purchase-dates';
-          for (const { ticker, dates } of member.tickers) {
+          const sortedTickers = [...member.tickers].sort((a, b) => a.ticker.localeCompare(b.ticker));
+          for (const { ticker, dates } of sortedTickers) {
             const item = document.createElement('details');
             const label = document.createElement('summary');
-            label.style.cursor = 'pointer';
+            label.className = 'committee-ticker-label';
             const symbol = document.createElement(counts.get(ticker) > 1 ? 'strong' : 'span');
             symbol.textContent = ticker;
             label.append(symbol);
@@ -1350,8 +1359,15 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
             }
             (counts.get(ticker) > 1 ? shared : other).append(item);
           }
-          if (shared.childElementCount) card.append(shared);
-          if (other.childElementCount) card.append(other);
+          for (const [heading, tickers] of [['Matching stock purchases', shared], ['Other stock purchases', other]]) {
+            if (!tickers.childElementCount) continue;
+            const section = document.createElement('div');
+            section.className = 'committee-purchase-group';
+            const label = document.createElement('h5');
+            label.textContent = heading;
+            section.append(label, tickers);
+            card.append(section);
+          }
         }
         column.append(card);
       }
