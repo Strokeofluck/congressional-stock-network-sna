@@ -109,6 +109,10 @@ li { margin-bottom: .45rem; }
 .network-embed { width: min(1300px, calc(100vw - 3rem)); margin: 1.25rem calc((100% - min(1300px, calc(100vw - 3rem))) / 2) .75rem; }
 .network-embed iframe { display: block; width: 100%; height: clamp(540px, 72vh, 740px); border: 1px solid #d7e1e5; border-radius: 8px; }
 @media (max-width: 700px) { .network-embed { width: 100%; margin-inline: 0; } .network-embed iframe { height: 620px; } }
+</style><style>
+.report-visual { margin:1.1rem 0; border:1px solid #d7e1e5; border-radius:6px; padding:.55rem .75rem; }
+.report-visual summary { cursor:pointer; font-weight:650; }
+.sna-report-panel { display:block; width:100%; border:1px solid #d7e1e5; border-radius:6px; }
 </style></head>
 <body>
 <header id="title-block-header">
@@ -143,6 +147,16 @@ filer–ticker tie once. The second network links members to full House
 committees in the November 14, 2025 roster snapshot. I matched names
 after normalizing spelling and reviewing name variants. Subcommittees
 and joint committees are outside this comparison.</p>
+<details class="report-visual"><summary>Inspect the original disclosure documents</summary>
+<p>The House PTR shows where the purchase data came from. The Senate example shows a different source format used in the earlier data-wrangling project.</p>
+<iframe class="sna-report-panel" data-panel="sources" title="Interactive disclosure source documents" src="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html?report-panel=sources&amp;v=afe6746" loading="lazy" style="height:750px"></iframe>
+<p><a href="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html#wrangle-question">Open in the presentation ↗</a></p>
+</details>
+<details class="report-visual"><summary>See how the source records were prepared</summary>
+<p>These checks illustrate the earlier extraction and joining workflow. The R code below uses the frozen House purchase extract.</p>
+<iframe class="sna-report-panel" data-panel="preparation" title="Presentation data preparation and validation visual" src="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html?report-panel=preparation&amp;v=afe6746" loading="lazy" style="height:380px"></iframe>
+<p><a href="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html#wrangle-challenge">Open in the presentation ↗</a></p>
+</details>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;sna-input.csv&#39;</span>, <span class="at">fileEncoding =</span> <span class="st">&#39;UTF-8-BOM&#39;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>roster <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;work/committee-affiliations.csv&#39;</span>, <span class="at">fileEncoding =</span> <span class="st">&#39;UTF-8-BOM&#39;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>members <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">intersect</span>(purchases<span class="sc">$</span>politician, roster<span class="sc">$</span>politician))</span>
@@ -212,6 +226,10 @@ of pairs with a stock tie.</p>
 least one stock in common (38.1%). Among pairs without a shared
 committee, 382 of 1121 did so (34.1%). The shared-committee rate was 4.1
 percentage points higher.</p>
+<h3>Trace the network back to reported purchases</h3>
+<p>Choose a committee to browse its members’ ticker lists, or choose a stock to open its matching PTRs. The presentation explorer uses transaction-date committee matching. Its 49.9% network density refers to the 45-filer shared-stock graph. The comparison above uses 53 filers and the November roster.</p>
+<iframe class="sna-report-panel" data-panel="measures" title="Interactive committee purchases, ticker degree, and matching PTRs" src="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html?report-panel=measures&amp;v=afe6746" loading="lazy" style="height:660px"></iframe>
+<p><a href="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html#sna-results">Open in the presentation ↗</a></p>
 <h2 id="interpret-the-result">4. Interpret the result</h2>
 <p>This comparison measures 2025 purchase overlap against a single
 November roster. Assignments may have changed during the year, so a
@@ -244,5 +262,11 @@ Social Network Analysis</a>.</li>
 <li>Ryan, S. <a href="https://github.com/Strokeofluck/congressional-stock-network-2025">Congressional
 Stock Network 2025 · input provenance and coverage</a>.</li>
 </ol>
-</body>
+<script>
+window.addEventListener('message', event => {
+  if (event.origin !== 'https://strokeofluck.github.io' || event.data?.type !== 'sna-report-panel-size') return;
+  const frame = [...document.querySelectorAll('.sna-report-panel')].find(el => el.contentWindow === event.source && el.dataset.panel === event.data.panel);
+  if (frame && Number.isFinite(event.data.height) && event.data.height > 30 && event.data.height < 12000) frame.style.height = (event.data.height + 4) + 'px';
+});
+</script></body>
 </html>
