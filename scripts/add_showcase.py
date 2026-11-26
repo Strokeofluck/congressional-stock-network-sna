@@ -9,4 +9,7 @@ s=s.replace('<a href="#question">Question</a><a href="#data">Data</a><a href="#r
 s=s.replace('Which stocks connect the most politicians?','The records, the extraction, and the network in one slide-by-slide walkthrough.<br><br>Which stocks connect the most politicians?')
 s=s.replace('</style>','</style><link rel="stylesheet" href="assets/source-inspector.css">',1)
 s=s.replace('</body>','<script src="assets/source-inspector.js"></script></body>') if '</body>' in s else s.replace('</html>','<script src="assets/source-inspector.js"></script></html>')
+# Keep the final report reachable in both presentation and scroll views.
+report_link = '<a style="display:inline-flex" href="DSA295-Final-Report.html">Final Project Report</a>'
+s=s.replace('<button id="notes">',report_link+'<button id="notes">',1)
 p.write_text(s,encoding='utf-8')
