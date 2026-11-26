@@ -105,7 +105,11 @@ figure img { max-width: 100%; height: auto; }
 figcaption { font-size: .88rem; color: #425762; }
 li { margin-bottom: .45rem; }
 </style>
-</head>
+<style>
+.network-embed { width: min(1300px, calc(100vw - 3rem)); margin: 1.25rem calc((100% - min(1300px, calc(100vw - 3rem))) / 2) .75rem; }
+.network-embed iframe { display: block; width: 100%; height: clamp(540px, 72vh, 740px); border: 1px solid #d7e1e5; border-radius: 8px; }
+@media (max-width: 700px) { .network-embed { width: 100%; margin-inline: 0; } .network-embed iframe { height: 620px; } }
+</style></head>
 <body>
 <header id="title-block-header">
 <h1 class="title">Do House Members on the Same Committees Buy the Same
@@ -169,7 +173,7 @@ no shared purchases.</p>
 </figure>
 <h3>Explore the network</h3>
 <p>Switch between member–stock, member–member, and committee views. The explorer shows the original purchase network. The comparison in Section 3 uses the 53 filers matched to the November snapshot.</p>
-<iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/?embed=1#view=full&amp;layout=party" title="Interactive congressional stock-purchase network" loading="lazy" style="width:100%;height:clamp(440px,70vh,720px);border:1px solid #d7e1e5"></iframe>
+<div class="network-embed"><iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/?embed=1#view=committee&amp;layout=party" title="Interactive congressional stock-purchase network" loading="lazy"></iframe></div>
 <p><a href="https://strokeofluck.github.io/congressional-stock-network-2025/">Explore the interactive network and committee views</a> · <a href="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html">View the presentation</a></p>
 <h2 id="compare-the-member-projections">3. Compare the member
 projections</h2>
