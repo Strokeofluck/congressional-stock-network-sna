@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Sean Ryan · DSA 295 · Fall 2026" />
+  <title>Who bought the same stocks?</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">html { background: #f5f7f8; color: #202e38; }
+body { max-width: 850px; margin: 0 auto; padding: clamp(22px, 5vw, 64px); background: #fff; font: 17px/1.65 system-ui, sans-serif; }
+h1, h2 { color: #173742; line-height: 1.18; }
+h1 { font-size: clamp(2.15rem, 6vw, 3.7rem); margin-bottom: .3rem; }
+h2 { font-size: 1.62rem; margin-top: 2.6rem; border-bottom: 1px solid #dae3e6; padding-bottom: .4rem; }
+.subtitle { color: #445b66; font-size: 1.18rem; margin-top: .25rem; }
+.author { font-size: .95rem; }
+a { color: #176070; }
+nav { background: #edf4f5; border-left: 3px solid #166675; padding: .35rem 1rem; }
+pre { background: #f2f5f6; padding: .8rem 1rem; overflow-x: auto; border-radius: 5px; font-size: .81rem; }
+figure { margin: 1.6rem 0; }
+figure img { max-width: 100%; height: auto; }
+figcaption { font-size: .88rem; color: #425762; }
+li { margin-bottom: .45rem; }
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Who bought the same stocks?</h1>
+<p class="subtitle">A network analysis of 2025 U.S. House purchase
+disclosures</p>
+<p class="author">Sean Ryan · DSA 295 · Fall 2026</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#research-questions" id="toc-research-questions">Research
+questions</a></li>
+<li><a href="#network-data" id="toc-network-data">Network data</a></li>
+<li><a href="#which-stocks-connect-the-most-filers" id="toc-which-stocks-connect-the-most-filers">Which stocks connect the
+most filers?</a></li>
+<li><a href="#how-much-do-filers-overlap" id="toc-how-much-do-filers-overlap">How much do filers overlap?</a></li>
+<li><a href="#interpretation-and-limits" id="toc-interpretation-and-limits">Interpretation and limits</a></li>
+<li><a href="#executive-summary" id="toc-executive-summary">Executive
+summary</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul>
+</nav>
+<h2 id="research-questions">Research questions</h2>
+<p>A stock can link several House disclosure filers when each reports
+buying it. Looking at these ties as a network lets me ask which stocks
+link the most filers, how broadly shared buying connects filers, and how
+much that overlap depends on the most widely shared stock.</p>
+<h2 id="network-data">Network data</h2>
+<p>I used the frozen 2025 extract from my presentation project. The
+source is U.S. House Periodic Transaction Reports (PTRs). I kept
+accepted ticker matches classified as public-stock purchases with
+transaction dates in 2025. Filer identities use cleaned display names,
+and ticker symbols are standardized to uppercase. Each unique
+filer–ticker pair counts once, even if the filer reported multiple
+purchases. A disclosure may cover a spouse’s or dependent’s
+purchase.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;sna-input.csv&#39;</span>, <span class="at">fileEncoding =</span> <span class="st">&#39;UTF-8-BOM&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rows <span class="ot">&lt;-</span> <span class="fu">subset</span>(raw, transaction_type <span class="sc">==</span> <span class="st">&#39;P&#39;</span> <span class="sc">&amp;</span> asset_type <span class="sc">==</span> <span class="st">&#39;ST&#39;</span> <span class="sc">&amp;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  ticker_parse_status <span class="sc">==</span> <span class="st">&#39;accepted&#39;</span> <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">&#39;^2025-&#39;</span>, transaction_date))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rows<span class="sc">$</span>filer <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">sub</span>(<span class="st">&#39;^(Honorable|Hon</span><span class="sc">\\</span><span class="st">.?) +&#39;</span>, <span class="st">&#39;&#39;</span>, rows<span class="sc">$</span>politician,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rows<span class="sc">$</span>ticker <span class="ot">&lt;-</span> <span class="fu">toupper</span>(<span class="fu">trimws</span>(rows<span class="sc">$</span>ticker_v8_2_cleaned))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>rows <span class="ot">&lt;-</span> <span class="fu">subset</span>(rows, <span class="sc">!</span><span class="fu">is.na</span>(ticker) <span class="sc">&amp;</span> <span class="fu">nzchar</span>(ticker) <span class="sc">&amp;</span> <span class="fu">nzchar</span>(filer))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ties <span class="ot">&lt;-</span> <span class="fu">unique</span>(rows[<span class="fu">c</span>(<span class="st">&#39;filer&#39;</span>, <span class="st">&#39;ticker&#39;</span>)])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>all_degree <span class="ot">&lt;-</span> <span class="fu">table</span>(ties<span class="sc">$</span>ticker)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>shared <span class="ot">&lt;-</span> <span class="fu">subset</span>(ties, ticker <span class="sc">%in%</span> <span class="fu">names</span>(all_degree[all_degree <span class="sc">&gt;=</span> <span class="dv">2</span>]))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>incidence <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span> filer <span class="sc">+</span> ticker, shared)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(rows) <span class="sc">==</span> <span class="dv">3179</span>, <span class="fu">nrow</span>(incidence) <span class="sc">==</span> <span class="dv">45</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ncol</span>(incidence) <span class="sc">==</span> <span class="dv">355</span>, <span class="fu">sum</span>(incidence) <span class="sc">==</span> <span class="dv">1291</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="at">purchase_records =</span> <span class="fu">nrow</span>(rows), <span class="at">all_filers =</span> <span class="fu">length</span>(<span class="fu">unique</span>(ties<span class="sc">$</span>filer)),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">all_tickers =</span> <span class="fu">length</span>(all_degree), <span class="at">shared_graph_filers =</span> <span class="fu">nrow</span>(incidence),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">shared_graph_tickers =</span> <span class="fu">ncol</span>(incidence), <span class="at">shared_graph_ties =</span> <span class="fu">sum</span>(incidence)))</span></code></pre></div>
+<pre class="text"><code>    purchase_records           all_filers          all_tickers 
+                3179                   55                  855 
+ shared_graph_filers shared_graph_tickers    shared_graph_ties 
+                  45                  355                 1291 </code></pre>
+<p>The two-mode graph links filers to tickers. It keeps tickers bought
+by at least two distinct filers. The full extract contains 55 filers and
+855 tickers. The shared-stock graph includes 45 filers, 355 tickers, and
+1,291 ties. The other 10 filers only reported qualifying purchases of
+tickers that no other filer in the extract bought.</p>
+<h2 id="which-stocks-connect-the-most-filers">Which stocks connect the
+most filers?</h2>
+<p>Stock degree is the number of distinct filers linked to a ticker. The
+bars show the five highest-degree tickers, with alphabetical ordering
+for ties.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stock_degree <span class="ot">&lt;-</span> <span class="fu">colSums</span>(incidence)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>top <span class="ot">&lt;-</span> <span class="fu">head</span>(stock_degree[<span class="fu">order</span>(<span class="sc">-</span>stock_degree, <span class="fu">names</span>(stock_degree))], <span class="dv">5</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">barplot</span>(<span class="fu">rev</span>(top), <span class="at">horiz =</span> <span class="cn">TRUE</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">22</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="st">&#39;Distinct House disclosure filers&#39;</span>, <span class="at">col =</span> <span class="st">&#39;#166675&#39;</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">cex.names =</span> <span class="fl">0.95</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">rev</span>(top) <span class="sc">+</span> <span class="fl">0.5</span>, y, <span class="fu">rev</span>(top), <span class="at">pos =</span> <span class="dv">4</span>, <span class="at">cex =</span> <span class="fl">0.85</span>)</span></code></pre></div>
+<pre class="text"><code>AMZN AAPL AVGO MSFT NVDA 
+  19   15   15   14   14 </code></pre>
+<figure>
+<img role="img" aria-label="Top five stocks by number of distinct filers" src="data:image/png;base64,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" alt="Top five stocks by number of distinct filers" />
+<figcaption aria-hidden="true">Top five stocks by number of distinct
+filers</figcaption>
+</figure>
+<p>Amazon (AMZN) links 19 of the 45 filers in the shared-stock graph.
+Apple (AAPL) and Broadcom (AVGO) each link 15. These counts measure how
+widely a ticker was shared across filers. They give the same weight to a
+filer who reported one purchase and a filer who reported several.</p>
+<h2 id="how-much-do-filers-overlap">How much do filers overlap?</h2>
+<p>I projected the two-mode graph onto filers. Two filers have an
+undirected edge when they share at least one ticker. The matrix product
+counts shared tickers per pair. Density uses the upper triangle to count
+each pair once, and the diagonal is excluded. For the sensitivity check
+I removed AMZN and held the same 45 filers fixed so the denominator
+stayed comparable.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">tcrossprod</span>(<span class="fu">as.matrix</span>(incidence))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pair_weights <span class="ot">&lt;-</span> overlap[<span class="fu">upper.tri</span>(overlap)]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>without_amzn <span class="ot">&lt;-</span> <span class="fu">tcrossprod</span>(<span class="fu">as.matrix</span>(incidence[, <span class="fu">colnames</span>(incidence) <span class="sc">!=</span> <span class="st">&#39;AMZN&#39;</span>]))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>without_weights <span class="ot">&lt;-</span> without_amzn[<span class="fu">upper.tri</span>(without_amzn)]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>edges <span class="ot">&lt;-</span> <span class="fu">sum</span>(pair_weights <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>remaining <span class="ot">&lt;-</span> <span class="fu">sum</span>(without_weights <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>possible <span class="ot">&lt;-</span> <span class="fu">length</span>(pair_weights)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(edges <span class="sc">==</span> <span class="dv">494</span>, possible <span class="sc">==</span> <span class="fu">choose</span>(<span class="dv">45</span>, <span class="dv">2</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>reached <span class="ot">&lt;-</span> <span class="dv">1</span><span class="dt">L</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> {</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  next_reached <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colSums</span>(overlap[reached, , <span class="at">drop =</span> <span class="cn">FALSE</span>] <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">identical</span>(next_reached, reached)) <span class="cf">break</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  reached <span class="ot">&lt;-</span> next_reached</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(reached) <span class="sc">==</span> <span class="dv">45</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">data.frame</span>(<span class="at">graph =</span> <span class="fu">c</span>(<span class="st">&#39;All shared stocks&#39;</span>, <span class="st">&#39;Without AMZN&#39;</span>),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">edges =</span> <span class="fu">c</span>(edges, remaining), <span class="at">possible_pairs =</span> possible,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">density_pct =</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">c</span>(edges, remaining) <span class="sc">/</span> possible, <span class="dv">1</span>)),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="at">connected_component_size =</span> <span class="fu">length</span>(reached),</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">pairs_lost_without_amzn =</span> edges <span class="sc">-</span> remaining))</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>pair_counts <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="st">&#39;Share a ticker&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(edges, remaining),</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;No shared ticker&#39;</span> <span class="ot">=</span> possible <span class="sc">-</span> <span class="fu">c</span>(edges, remaining))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(pair_counts, <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&#39;All shared stocks&#39;</span>, <span class="st">&#39;Without AMZN&#39;</span>),</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;#166675&#39;</span>, <span class="st">&#39;#d7e1e5&#39;</span>), <span class="at">border =</span> <span class="cn">NA</span>,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1250</span>), <span class="at">ylab =</span> <span class="st">&#39;Filer pairs&#39;</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;top&#39;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(pair_counts), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&#39;#166675&#39;</span>, <span class="st">&#39;#d7e1e5&#39;</span>),</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">horiz =</span> <span class="cn">TRUE</span>, <span class="at">bty =</span> <span class="st">&#39;n&#39;</span>)</span></code></pre></div>
+<pre class="text"><code>             graph edges possible_pairs density_pct
+ All shared stocks   494            990        49.9
+      Without AMZN   457            990        46.2
+connected_component_size  pairs_lost_without_amzn 
+                      45                       37 </code></pre>
+<figure>
+<img role="img" aria-label="Connected and unconnected filer pairs, before and after removing Amazon" src="data:image/png;base64,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" alt="Connected and unconnected filer pairs, before and after removing Amazon" />
+<figcaption aria-hidden="true">Connected and unconnected filer pairs,
+before and after removing Amazon</figcaption>
+</figure>
+<p>The full projection has 494 of 990 possible edges (49.9%). All 45
+filers are reachable within one connected component. The sensitivity
+check counts only pairs whose sole shared ticker was Amazon. Pairs that
+also shared another stock stay connected. This distinguishes Amazon’s
+high stock degree from its effect on the number of filer pairs with any
+overlap.</p>
+<p>Without Amazon, 457 pairs remain connected (46.2% density). The
+projection loses 37 edges.</p>
+<h2 id="interpretation-and-limits">Interpretation and limits</h2>
+<p>The density depends on the population and time window. It describes
+the 45 filers with a shared stock purchase during the year. Including
+the 10 filers with no shared purchases leaves the same 494 edges across
+1,485 possible pairs, for 33.3% density. Annual overlap can connect two
+filers whose purchases occurred months apart. Widespread market interest
+in a stock offers one possible explanation for overlap. These data
+provide no test of coordination, access to privileged information, or
+investment performance.</p>
+<p>The extract excludes sales, other asset types, and unresolved
+tickers. It can also miss records or contain incorrect ticker and name
+matches. The presentation’s committee views provide context about
+institutional roles. The calculations here use purchase ties only, so
+committee membership does not create an edge or enter the sensitivity
+analysis.</p>
+<h2 id="executive-summary">Executive summary</h2>
+<ul>
+<li><strong>Which stock links the most filers?</strong> Amazon connects
+19 filers, followed by Apple and Broadcom at 15 each.</li>
+<li><strong>How common is shared buying?</strong> In the shared-stock
+graph, 494 of 990 filer pairs share at least one ticker, and all 45
+filers belong to the same connected component.</li>
+<li><strong>How much does the network depend on Amazon?</strong>
+Removing AMZN leaves 457 of 494 edges. Only 37 pairs depend on Amazon
+alone for their connection.</li>
+</ul>
+<h2 id="references">References</h2>
+<ol type="1">
+<li>U.S. House of Representatives, Office of the Clerk. <a href="https://disclosures-clerk.house.gov/FinancialDisclosure">Financial
+Disclosure Reports</a>. Original Periodic Transaction Reports.</li>
+<li>Ryan, Sean. <a href="https://github.com/Strokeofluck/congressional-stock-network-sna">Congressional
+Stock Network: SNA</a>. Frozen extract, graph definitions, and
+presentation analysis.</li>
+<li>Ryan, Sean. <a href="https://github.com/Strokeofluck/congressional-stock-network-2025">Congressional
+Stock Network 2025</a>. Upstream data provenance and interactive
+committee context.</li>
+<li>Latapy, Matthieu, Clémence Magnien, and Nathalie Del Vecchio. 2008.
+<a href="https://doi.org/10.1016/j.socnet.2007.04.006">Basic notions for
+the analysis of large two-mode networks</a>. <em>Social Networks</em> 30
+(1), 31–48.</li>
+</ol>
+</body>
+</html>
