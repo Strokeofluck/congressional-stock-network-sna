@@ -1491,4 +1491,26 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
   });
   observer.observe(panel);
 }
+</script><style>
+html.report-panel, html.report-panel body { margin:0!important; width:100%!important; min-height:0!important; height:auto!important; overflow:visible!important; }
+.report-panel header, .report-panel .deck-controls { display:none!important; }
+.report-panel body { padding:0!important; }
+.report-panel main { position:static!important; display:block!important; padding:0!important; height:auto!important; min-height:0!important; overflow:visible!important; }
+.report-panel main > section { display:none!important; }
+.report-panel main > section.report-selected { display:block!important; position:static!important; padding:14px!important; height:auto!important; min-height:0!important; overflow:visible!important; border:0!important; }
+.report-panel .report-selected > :is(.eyebrow,.identity,.notes,h1,h2) { display:none!important; }
+</style>
+<script>
+(() => {
+  const panels = { sources:'wrangle-question', preparation:'wrangle-challenge', measures:'sna-results' };
+  const key = new URLSearchParams(location.search).get('report-panel');
+  if (!Object.hasOwn(panels,key)) return;
+  const section = document.getElementById(panels[key]);
+  document.documentElement.classList.add('report-panel');
+  document.body.classList.remove('slide-deck');
+  section.classList.add('report-selected');
+  const resize = () => parent.postMessage({type:'sna-report-panel-size',panel:key,height:Math.ceil(section.getBoundingClientRect().height)}, '*');
+  new ResizeObserver(resize).observe(section);
+  resize();
+})();
 </script></body></html>
