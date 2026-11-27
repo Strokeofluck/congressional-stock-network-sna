@@ -1346,10 +1346,13 @@ function setupCommitteeMenu(getFilings, createBuyerCard) {
     }
     for (const [label, group] of [['Reported purchases', matched], ['No matched purchase in the extract', unmatched]]) {
       if (!group.length) continue;
-      const column = document.createElement('div');
+      const isUnmatched = group === unmatched;
+      const column = document.createElement(isUnmatched ? 'details' : 'div');
       column.className = 'ptr-party-group';
-      const heading = document.createElement('h4');
-      heading.textContent = label;
+      column.style.alignSelf = 'start';
+      const heading = document.createElement(isUnmatched ? 'summary' : 'h4');
+      heading.textContent = isUnmatched ? 'No matched purchases (' + group.length + ')' : label;
+      if (isUnmatched) heading.style.cursor = 'pointer';
       column.append(heading);
       for (const member of group) {
         const card = document.createElement('div');
