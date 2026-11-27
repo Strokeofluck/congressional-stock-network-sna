@@ -165,6 +165,12 @@ and joint committees are outside this comparison.</p>
 neither appears with a full committee assignment in the matched
 snapshot. The other 53 filers stay in the comparison even if they have
 no shared purchases.</p>
+<p><strong>How I built the two networks</strong></p>
+<ol>
+<li>Start with 3,179 accepted House stock-purchase records from 2025 and the November 14 committee roster.</li>
+<li>Match the filers to the roster. Of 55 filers, 53 had a full committee assignment in the snapshot.</li>
+<li>Build two sets of ties for those 53 filers. One links filers to stocks they bought, and the other links them to full committees. Count each filer–stock or filer–committee tie once.</li>
+</ol>
 <details class="report-visual"><summary>Show R code and matching output</summary>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>purchases <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;sna-input.csv&#39;</span>, <span class="at">fileEncoding =</span> <span class="st">&#39;UTF-8-BOM&#39;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>roster <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;work/committee-affiliations.csv&#39;</span>, <span class="at">fileEncoding =</span> <span class="st">&#39;UTF-8-BOM&#39;</span>)</span>
@@ -205,6 +211,12 @@ percentage points higher.</p>
 <p>Click a member to highlight the shared stocks they reported buying. Switch to <strong>Member–member</strong> to see who else bought the same stocks. The explorer shows the original purchase network. The percentages below use the 53 filers matched to the November committee snapshot.</p>
 <div class="network-embed"><iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/?embed=1#view=stock&amp;layout=party" title="Interactive congressional stock-purchase network" loading="lazy"></iframe></div>
 <p><a href="https://strokeofluck.github.io/congressional-stock-network-2025/">Explore the interactive network and committee views</a> · <a href="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html">View the presentation</a></p>
+<p><strong>How I compared the pairs</strong></p>
+<ol>
+<li>Check each of the 1,378 distinct pairs of matched filers for at least one shared stock and at least one shared committee.</li>
+<li>Split the pairs into two groups by committee overlap. There were 257 pairs with a shared committee and 1,121 without one.</li>
+<li>Within each group, divide the number of pairs with a shared stock by the total number of pairs. That gives 98 of 257 (38.1%) and 382 of 1,121 (34.1%).</li>
+</ol>
 <details class="report-visual"><summary>Show R code and comparison output</summary>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>overlap <span class="ot">&lt;-</span> <span class="fu">tcrossprod</span>(stocks)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>committee_overlap <span class="ot">&lt;-</span> <span class="fu">tcrossprod</span>(committees)</span>
