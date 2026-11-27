@@ -113,6 +113,17 @@ li { margin-bottom: .45rem; }
 .report-visual { margin:1.1rem 0; border:1px solid #d7e1e5; border-radius:6px; padding:.55rem .75rem; }
 .report-visual summary { cursor:pointer; font-weight:650; }
 .sna-report-panel { display:block; width:100%; border:1px solid #d7e1e5; border-radius:6px; }
+</style><style>
+@media screen {
+  body { box-sizing: border-box; width: min(1300px, calc(100% - 3rem)); max-width: none; padding: 2rem 0; }
+  .network-embed { width: 100%; margin: 1rem 0 .75rem; }
+  .network-embed iframe, .sna-report-panel { box-sizing: border-box; }
+  #TOC ul { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; list-style: none; margin: .5rem 0; padding: 0; }
+  #TOC li { margin: 0; }
+  @media (max-width: 700px) {
+    body { width: calc(100% - 2rem); padding-top: 1rem; }
+  }
+}
 </style></head>
 <body>
 <header id="title-block-header">
@@ -208,7 +219,7 @@ least one stock in common (38.1%). Among pairs without a shared
 committee, 382 of 1121 did so (34.1%). The shared-committee rate was 4.1
 percentage points higher.</p>
 <h3>Explore shared stock purchases</h3>
-<p>Click a member to highlight the shared stocks they reported buying. Switch to <strong>Member–member</strong> to see who else bought the same stocks. The explorer shows the original purchase network. The percentages below use the 53 filers matched to the November committee snapshot.</p>
+<p>Click a member to highlight the shared stocks they reported buying. Switch to <strong>Member–member</strong> to see who else bought the same stocks. The explorer shows the original purchase network. The comparison uses the 53 filers matched to the November committee snapshot.</p>
 <div class="network-embed"><iframe class="network-live" src="https://strokeofluck.github.io/congressional-stock-network-2025/?embed=1#view=stock&amp;layout=party" title="Interactive congressional stock-purchase network" loading="lazy"></iframe></div>
 <p><a href="https://strokeofluck.github.io/congressional-stock-network-2025/">Explore the interactive network and committee views</a> · <a href="https://strokeofluck.github.io/congressional-stock-network-sna/sna-presentation.html">View the presentation</a></p>
 <p><strong>How I compared the pairs</strong></p>
